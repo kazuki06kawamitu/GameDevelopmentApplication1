@@ -13,36 +13,27 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Uility">
-      <UniqueIdentifier>{56736212-7ae9-4fe9-9cdb-99437c64b6c9}</UniqueIdentifier>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{a09bf396-9b8f-4ec8-a24c-0f9cebb91744}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scene">
-      <UniqueIdentifier>{e61394fc-9bd1-4f8f-9b17-e191ca6e766d}</UniqueIdentifier>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{02c2c176-58a6-441b-987b-401869aad0e7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ソース.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
     <ClCompile Include="AppMain.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Vector2D.cpp">
-      <Filter>Uility</Filter>
-    </ClCompile>
-    <ClCompile Include="InputControl.cpp">
-      <Filter>Uility</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Scene</Filter>
+    <ClCompile Include="Utility\Vector2D_.cpp">
+      <Filter>Utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector2D.h">
-      <Filter>Uility</Filter>
-    </ClInclude>
-    <ClInclude Include="InputControl.h">
-      <Filter>Uility</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Scene</Filter>
+      <Filter>Utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
