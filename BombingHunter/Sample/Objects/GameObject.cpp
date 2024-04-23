@@ -1,7 +1,7 @@
 #include "GameObject.h"
 
 //コンストラクタ
-GameObject::GameObject() :
+GameObject::GameObject():
 	location(0.0f),
 	scale(0.0),
 	radian(0.0),
@@ -9,7 +9,7 @@ GameObject::GameObject() :
 	sound(0)
 {
 	//デストラクタ
-	GameObject::~Gameobject()
+	GameObject::~GameObject()
 	{
 
 	}
