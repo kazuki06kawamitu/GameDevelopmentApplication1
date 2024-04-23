@@ -16,33 +16,28 @@
     <Filter Include="Uility">
       <UniqueIdentifier>{56736212-7ae9-4fe9-9cdb-99437c64b6c9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scene">
-      <UniqueIdentifier>{e61394fc-9bd1-4f8f-9b17-e191ca6e766d}</UniqueIdentifier>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{a4572d28-c381-4b45-97bc-b4f29c4f7656}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{d6be7d1b-eeb2-473f-9fb2-e3896f19de08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Player">
+      <UniqueIdentifier>{842b59b8-19b9-45b2-afa5-a0e9d4d729b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Evaluation">
+      <UniqueIdentifier>{938dec5f-8e9f-456a-8389-36205ce3fdfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Images">
+      <UniqueIdentifier>{0d2ca908-4c2d-4f9c-b6af-86448f33fc3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Images\WingEnemy">
+      <UniqueIdentifier>{96ffa6ce-a0c7-4d3d-8a4c-f34192262d9a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AppMain.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Vector2D.cpp">
-      <Filter>Uility</Filter>
-    </ClCompile>
-    <ClCompile Include="InputControl.cpp">
-      <Filter>Uility</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Vector2D.h">
-      <Filter>Uility</Filter>
-    </ClInclude>
-    <ClInclude Include="InputControl.h">
-      <Filter>Uility</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

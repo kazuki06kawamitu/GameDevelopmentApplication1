@@ -16,7 +16,7 @@ Vector2D::Vector2D(float mx, float my) :x(mx), y(my)
 Vector2D::~Vector2D()
 {
 }
-
+//代入の 演算子オーバーロード
 Vector2D& Vector2D::operator=(const Vector2D& loction)
 {
 	this->x = loction.x;
@@ -24,7 +24,7 @@ Vector2D& Vector2D::operator=(const Vector2D& loction)
 
 	return *this;
 }
-
+//加算の 演算子オーバーロード
 const Vector2D Vector2D::operator+(const Vector2D& loction)const
 {
 	Vector2D result = Vector2D(0.0f);
@@ -34,7 +34,7 @@ const Vector2D Vector2D::operator+(const Vector2D& loction)const
 
 	return result;
 }
-
+//加算代入 演算子オーバーロード
 Vector2D& Vector2D::operator+=(const Vector2D& loction)
 {
 	this->x += loction.x;
@@ -42,7 +42,7 @@ Vector2D& Vector2D::operator+=(const Vector2D& loction)
 
 	return *this;
 }
-
+//減算 演算子オーバーロード
 const Vector2D Vector2D::operator-(const Vector2D& loction)const
 {
 	Vector2D result = Vector2D(0.0f);
@@ -50,7 +50,7 @@ const Vector2D Vector2D::operator-(const Vector2D& loction)const
 	result.y = this->y - loction.y;
 	return result;
 }
-
+//減算代入 演算子オーバーロード
 Vector2D& Vector2D::operator-=(const Vector2D& loction)
 {
 	this->x -= loction.x;
@@ -58,17 +58,17 @@ Vector2D& Vector2D::operator-=(const Vector2D& loction)
 
 	return *this;
 }
-
+//乗算 演算子オーバーロード
 const Vector2D Vector2D::operator*(const float& scalar) const
 {
 	Vector2D result = Vector2D(0.0f);
 
-	result.x = this->x *scalar;
-	result.y = this->y *scalar;
+	result.x = this->x * scalar;
+	result.y = this->y * scalar;
 
 	return result;
 }
-
+//乗算 演算子オーバーロード
 const Vector2D Vector2D::operator*(const Vector2D& location) const
 {
 	Vector2D result = Vector2D(0.0f);
@@ -78,7 +78,7 @@ const Vector2D Vector2D::operator*(const Vector2D& location) const
 
 	return result;
 }
-
+//乗算代入 演算子オーバーロード
 Vector2D& Vector2D::operator*=(const float& scalar)
 {
 	this->x *= scalar;
@@ -86,37 +86,37 @@ Vector2D& Vector2D::operator*=(const float& scalar)
 
 	return *this;
 }
-
+//乗算代入 演算子オーバーロード
 Vector2D& Vector2D::operator*=(const Vector2D& location)
 {
 	this->x *= location.x;
 	this->y *= location.y;
 
-	return * this;
+	return *this;
 }
-
+//除算 演算子オーバーロード
 const Vector2D Vector2D::operator/(const float& scalar) const
 
 {
-	if (fabsf(scalar) < 1e-6f)
+	if (Abs(scalar) < 1e-6f)
 	{
 		return Vector2D(0.0f);
 	}
 	return Vector2D(this->x / scalar, this->y / scalar);
 }
-
+//除算 演算子オーバーロード
 const Vector2D Vector2D::operator/(const Vector2D& location) const
 {
-	if ((fabsf(location.x) < 1e-6f) || (fabsf(location.y) < 1e-6f))
+	if ((Abs(location.x) < 1e-6f) || (Abs(location.y) < 1e-6f))
 	{
 		return Vector2D(0.0f);
 	}
 	return Vector2D(this->x / location.x, this->y / location.y);
 }
-
+//除算代入 演算子オーバーロード
 Vector2D& Vector2D::operator/=(const float& scalar)
 {
-	if (fabsf(scalar) < 1e-6f)
+	if (Abs(scalar) < 1e-6f)
 	{
 		this->x = 0.0f;
 		this->y = 0.0f;
@@ -128,10 +128,10 @@ Vector2D& Vector2D::operator/=(const float& scalar)
 	}
 	return *this;
 }
-
+//除算代入 演算子オーバーロード
 Vector2D& Vector2D::operator/=(const Vector2D& location)
 {
-	if ((fabsf(location.x) < 1e-6f) || (fabsf(location.y) < 1e-6f))
+	if ((Abs(location.x) < 1e-6f) || (Abs(location.y) < 1e-6f))
 	{
 		this->x = 0.0f;
 		this->y = 0.0f;
@@ -143,7 +143,7 @@ Vector2D& Vector2D::operator/=(const Vector2D& location)
 	}
 	return *this;
 }
-
+//整数型データに変換
 void Vector2D::ToInt(int* x, int* y)const
 {
 	*x = static_cast<int>(this->x);
