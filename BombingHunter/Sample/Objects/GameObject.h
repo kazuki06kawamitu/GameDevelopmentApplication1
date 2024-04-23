@@ -3,7 +3,7 @@
 #include "../Utility/Vector2D.h"
 
 //ゲームオブジェクト基底クラス
-class Gameobject
+class GameObject
 {
 protected:
 	Vector2D location;  //位置情報
