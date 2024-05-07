@@ -1,5 +1,5 @@
 #include "Player.h"
-#include "../../Utility/inputControl.h"
+#include "../../Utility/InputControl.h"
 #include "DxLib.h"
 
 Player::Player() :animation_count(0), flip_flag(FALSE)
@@ -12,11 +12,11 @@ Player::~Player()
 {
 }
 //初期化処理
-void Player::initialize()
+void Player::Initialize()
 {
 	//画像の読み込み
-	animation[0] = loadGraph("Resource/images/Tri-pilrt/1.png");
-	animation[1] = loadGraph("Resource/images/Tri-pilrt/2.png");
+	animation[0] = LoadGraph("Resource/Images/Tri-pilrt/1.png");
+	animation[1] = LoadGraph("Resource/Images/Tri-pilrt/2.png");
 
 	//エラーチェック
 	if (animation[0] == -1 || animation[1] == -1)
@@ -31,7 +31,7 @@ void Player::initialize()
 	box_size = Vector2D(64.0f);
 
 	//初期画像の設定
-	image = animastion[0];
+	image = animation[0];
 }
 
 //更新処理
@@ -51,17 +51,17 @@ void Player::Draw() const
 	DrawRotaGraphF(location.x, location.y, 1.0, radian, image, TRUE, flip_flag);
 
 	//デバック用
-	#if_DEBUG
+	#if _DEBUG
 		//当たり判定の可視化
 	Vector2D ul = location - (box_size / 2.0f);
 	Vector2D br = location + (box_size / 2.0f);
 
-	drawBoxAA(ul.x, ul.y, br.x, br.y, GetColor(255, 0, 0), FALSE);
+	DrawBoxAA(ul.x, ul.y, br.x, br.y, GetColor(255, 0, 0), FALSE);
 #endif
 }
 
 //終了処理
-void Player::finalize()
+void Player::Finalize()
 {
 	//使用した画像を解放
 	DeleteGraph(animation[0]);
@@ -69,7 +69,7 @@ void Player::finalize()
 }
 
 //当たり判定通知処理
-void Player::OnhitCollision(GameObject* hit_object)
+void Player::OnHitCollision(GameObject* hit_object)
 {
 	//当たった時の処理
 }
@@ -78,7 +78,7 @@ void Player::OnhitCollision(GameObject* hit_object)
 void Player::Movement()
 {
 	//移動の速さ
-	Vector2D veloctiy = 0.0f;
+	Vector2D velocity = 0.0f;
 
 	//左右移動
 	if (InputControl::GetKey(KEY_INPUT_LEFT))
@@ -101,16 +101,16 @@ void Player::Movement()
 }
 
 //アニメーション制御
-void player::AnimationControl()
+void Player::AnimationControl()
 {
 	//アニメーションカウントを加算する
 	animation_count++;
 
 	//60フレーム目に到達したら
-	if (animetion_count >= 60)
+	if (animation_count >= 60)
 	{
 		//カウントリセット
-		animetion_count = 0;
+		animation_count = 0;
 
 		//画像の切替
 		if (image == animation[0])

@@ -1,13 +1,18 @@
 #include "GameObject.h"
 
 //コンストラクタ
-GameObject::GameObject():
+GameObject::GameObject() :
+
 	location(0.0f),
 	scale(0.0),
 	radian(0.0),
 	image(0),
 	sound(0)
 {
+
+}
+
+
 	//デストラクタ
 	GameObject::~GameObject()
 	{
@@ -27,7 +32,7 @@ GameObject::GameObject():
 	}
 
 	//描画処理
-	void Gameobject::Draw() const
+	void GameObject::Draw() const
 	{
 
 	}
@@ -39,7 +44,7 @@ GameObject::GameObject():
 	}
 
 	//当たり判定通知処理
-	void GameObject::OnHitCollision(GameObject* hit_object)
+	void GameObject::OnHitCollision(GameObject * hit_object)
 	{
 		//当たった時行う処理
 	}
@@ -51,8 +56,7 @@ GameObject::GameObject():
 	}
 
 	//位置情報設定処理
-	void GameObject::Setlocation(const Vector2D& location)
+	void GameObject::SetLocation(const Vector2D & location)
 	{
 		this->location = location;
 	}
-}

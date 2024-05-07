@@ -12,7 +12,7 @@ Vector2D::Vector2D(float scalar) : x(scalar), y(scalar)
 Vector2D::Vector2D(float mx, float my) : x(mx), y(my)
 {
 }
-//デストラクタ
+//デストラクタ(解体時に呼び出される)
 Vector2D::~Vector2D()
 {
 }
@@ -22,6 +22,7 @@ Vector2D& Vector2D::operator=(const Vector2D& location)
 	this->x = location.x;
 	this->y = location.y;
 
+	//自分自身を返す
 	return *this;
 }
 //加算処理

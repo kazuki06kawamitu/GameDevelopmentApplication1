@@ -7,7 +7,7 @@
 class Scene
 {
 private:
-	std::vector<GameObject*>oblects;
+	std::vector<GameObject*>objects;
 
 public:
 	Scene();
@@ -21,7 +21,7 @@ public:
 private:
 	//オブジェクト生成処理
 	template<class T>
-	T* CeateObject(const Vector2D& location)
+	T* CreateObject(const Vector2D& location)
 	{
 		//指定したクラスを生成する
 		T* new_instance = new T();
@@ -34,6 +34,18 @@ private:
 			delete new_instance;
 			throw std::string("ゲームオブジェクトが生成できませんでした");
 		}
+
+		//初期化処理
+		new_object->Initialize();
+
+		//位置情報の設定
+		new_object->SetLocation(location);
+
+		//シーン内に存在するオブジェクトに追加
+		objects.push_back(new_object);
+
+		//生成したオブジェクトのポインタを返却
+		return new_instance;
 
 	}
 };

@@ -1,5 +1,5 @@
 #include "Vector2D.h"
-#include <math.h>
+#include "UserTemplate.h"
 //コンストラクタ処理
 Vector2D::Vector2D() : x(0.0f), y(0.0f)
 {

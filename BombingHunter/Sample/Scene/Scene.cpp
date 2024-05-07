@@ -46,17 +46,17 @@ void Scene::Draw()const
 void Scene::Finalize()
 {
 	//動的配列が空なら処理を終了する
-	if (oblects.empty())
+	if (objects.empty())
 	{
 		return;
 	}
 
 	//各オブジェクトを削除する
-	for (Gameobject* obj : objects)
+	for (GameObject* obj : objects)
 	{
 		obj->Finalize();
 		delete obj;
 	}
 	//動的配列の解放
-	oblects.clear();
+	objects.clear();
 }
