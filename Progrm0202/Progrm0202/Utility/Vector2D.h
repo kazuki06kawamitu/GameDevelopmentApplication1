@@ -7,10 +7,10 @@ public:
 	float y;//y成分
 
 public:
-	Vector2D();
+	Vector2D();//コントラクタ
 	Vector2D(float scalar);
 	Vector2D(float mx, float my);
-	~Vector2D();
+	~Vector2D();//デストラクタ
 
 public:
 	//代入の 演算子オーバーロード

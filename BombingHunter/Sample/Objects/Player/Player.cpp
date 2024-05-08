@@ -11,6 +11,7 @@ Player::Player() :animation_count(0), flip_flag(FALSE)
 Player::~Player()
 {
 }
+
 //‰Šú‰»ˆ—
 void Player::Initialize()
 {

@@ -2,6 +2,8 @@
 
 #include "../Utility/Vector2D.h"
 
+#define D_PIVOT_CENTER  //座標の原点を画像の中心にする
+
 //ゲームオブジェクト基底クラス
 class GameObject
 {
