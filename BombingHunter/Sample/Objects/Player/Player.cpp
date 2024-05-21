@@ -16,8 +16,8 @@ Player::~Player()
 void Player::Initialize()
 {
 	//画像の読み込み
-	animation[0] = LoadGraph("Resource/Images/Tri-pilrt/1.png");
-	animation[1] = LoadGraph("Resource/Images/Tri-pilrt/2.png");
+	animation[0] = LoadGraph("Resource/Images/Tri-pilot/1.png");
+	animation[1] = LoadGraph("Resource/Images/Tri-pilot/2.png");
 
 	//エラーチェック
 	if (animation[0] == -1 || animation[1] == -1)

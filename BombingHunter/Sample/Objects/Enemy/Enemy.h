@@ -6,7 +6,7 @@ class Enemy :public GameObject
 {
 private:
 	int animation[2];  //アニメション画像
-	int animation_count  //アニメション時間
+	int animation_count;  //アニメション時間
 	Vector2D direction;  //進行方向
 
 public:
