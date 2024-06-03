@@ -43,14 +43,14 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -104,12 +104,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:dxlib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\dxlib</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:dxlib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\dxlib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -120,14 +120,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:dxlib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\dxlib</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:dxlib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\dxlib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -145,6 +145,64 @@
     <ClInclude Include="Utility\ResourceManager.h" />
     <ClInclude Include="Utility\UserTemplate.h" />
     <ClInclude Include="Utility\Vector2D.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resource\Images\BackGround.png" />
+    <Image Include="Resource\Images\Blast\1.png" />
+    <Image Include="Resource\Images\Blast\2.png" />
+    <Image Include="Resource\Images\Blast\3.png" />
+    <Image Include="Resource\Images\Bomb\Bomb.png" />
+    <Image Include="Resource\Images\BoxEnemy\1.png" />
+    <Image Include="Resource\Images\BoxEnemy\2.png" />
+    <Image Include="Resource\Images\EnemyBullet\1.png" />
+    <Image Include="Resource\Images\EnemyBullet\eff1.png" />
+    <Image Include="Resource\Images\EnemyBullet\eff2.png" />
+    <Image Include="Resource\Images\EnemyBullet\eff3.png" />
+    <Image Include="Resource\Images\Evaluation\BAD.png" />
+    <Image Include="Resource\Images\Evaluation\Finish.png" />
+    <Image Include="Resource\Images\Evaluation\GOOD.png" />
+    <Image Include="Resource\Images\Evaluation\OK.png" />
+    <Image Include="Resource\Images\Evaluation\Perfect.png" />
+    <Image Include="Resource\Images\FlyText\-.png" />
+    <Image Include="Resource\Images\GoldEnemy\1.png" />
+    <Image Include="Resource\Images\GoldEnemy\2.png" />
+    <Image Include="Resource\Images\GoldEnemy\3.png" />
+    <Image Include="Resource\Images\GoldEnemy\4.png" />
+    <Image Include="Resource\Images\GoldEnemy\5.png" />
+    <Image Include="Resource\Images\Harpy\1.png" />
+    <Image Include="Resource\Images\Harpy\2.png" />
+    <Image Include="Resource\Images\Score\0.png" />
+    <Image Include="Resource\Images\Score\1.png" />
+    <Image Include="Resource\Images\Score\2.png" />
+    <Image Include="Resource\Images\Score\3.png" />
+    <Image Include="Resource\Images\Score\4.png" />
+    <Image Include="Resource\Images\Score\5.png" />
+    <Image Include="Resource\Images\Score\6.png" />
+    <Image Include="Resource\Images\Score\7.png" />
+    <Image Include="Resource\Images\Score\8.png" />
+    <Image Include="Resource\Images\Score\9.png" />
+    <Image Include="Resource\Images\Score\font-21.png" />
+    <Image Include="Resource\Images\Score\hs.png" />
+    <Image Include="Resource\Images\TimeLimit\timer-03.png" />
+    <Image Include="Resource\Images\Tri-pilot\1.png" />
+    <Image Include="Resource\Images\Tri-pilot\2.png" />
+    <Image Include="Resource\Images\WingEnemy\1.png" />
+    <Image Include="Resource\Images\WingEnemy\2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Resource\Sounds\arrows_perfect03_short.wav" />
+    <Media Include="Resource\Sounds\bishi.wav" />
+    <Media Include="Resource\Sounds\Boss_gahee.wav" />
+    <Media Include="Resource\Sounds\Evaluation\BGM_arrows.wav" />
+    <Media Include="Resource\Sounds\Evaluation\BGM_timeup.wav" />
+    <Media Include="Resource\Sounds\Evaluation\SE_bad.wav" />
+    <Media Include="Resource\Sounds\Evaluation\SE_good.wav" />
+    <Media Include="Resource\Sounds\Evaluation\SE_ok.wav" />
+    <Media Include="Resource\Sounds\Evaluation\SE_perfect.wav" />
+    <Media Include="Resource\Sounds\explosion.wav" />
+    <Media Include="Resource\Sounds\pan.wav" />
+    <Media Include="Resource\Sounds\pokan.wav" />
+    <Media Include="Resource\Sounds\teki_gahee.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

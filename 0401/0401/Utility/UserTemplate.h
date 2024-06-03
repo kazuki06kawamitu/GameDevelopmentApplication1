@@ -29,3 +29,18 @@ T Max(T a, T b)
 	}
 	return result;
 }
+
+template<typename T>
+T Min(T a, T b)
+{
+	T result;
+	if (a < b)
+	{
+		result = b;
+	}
+	else
+	{
+		result = a;
+	}
+	return result;
+}

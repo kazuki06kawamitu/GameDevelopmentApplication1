@@ -34,6 +34,7 @@ void GameObject::Update()
 void GameObject::Draw() const
 {
 	//ƒƒ“ƒo‚Ìî•ñ‚ğŠî‚É•`‰æ‚·‚é
+	DrawRotaGraphF(location.x, location.y, 1.0, 0.0, image, TRUE, flip_flag);
 	Vector2D upper_left = location - (box_size / 2.0f);
 	Vector2D lower_right = location + (box_size / 2.0f);
 	DrawBoxAA(upper_left.x, upper_left.y, lower_right.x, lower_right.y,

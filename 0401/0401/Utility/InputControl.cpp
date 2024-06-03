@@ -60,5 +60,5 @@ bool InputControl::GetKeyUp(int key_code) const
 //キーコードの範囲内か確認する処理
 bool InputControl::CheckKeyCodeRange(int key_code)const
 {
-	return (0 <= key_code && key_code, D_KEYCODE_MAX);
+	return (0 <= key_code && key_code< D_KEYCODE_MAX);
 }

@@ -7,6 +7,7 @@
 class Scene
 {
 private:
+	int back_ground_image;
 	std::vector<GameObject*>objects;
 
 public:

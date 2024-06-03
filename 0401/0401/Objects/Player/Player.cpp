@@ -21,19 +21,23 @@ Player::~Player()
 //初期化処理
 void Player::Initialize()
 {
+	//当たり判定の短形の大きさを設定
 	box_size = Vector2D(23.0f);
+	//初期位置を設定
 	location = Vector2D(320.0f, 240.0f);
 
+	//アニメーション画像を読み込む
 	ResourceManager* rm = ResourceManager::GetInstance();
 	std::vector<int> tmp;
 	tmp = rm->GetImages("Resource/Images/Tri-pilot/1.png");
 	animation_data.push_back(tmp[0]);
-	tmp = rm->GetImages("Resource/Image/Tri-pilot/2.png");
+	tmp = rm->GetImages("Resource/Images/Tri-pilot/2.png");
 	animation_data.push_back(tmp[0]);
 
 	//初期画像の設定
 	image = animation_data[0];
 
+	//アニメーションに関わる設定
 	animation_count = 0;
 }
 
@@ -74,10 +78,10 @@ void Player::Movement()
 		direction = 1.0f;
 		flip_flag = FALSE;
 	}
-
+	//向きによって、移動量の加減を行う
 	if (direction != 0.0f)
 	{
-		float max_speed = Abs<float>((5.0f * 0.5 * direction));
+		float max_speed = Abs<float>((5.0f * 0.5f * direction));
 		velocity.x += 0.5f * direction;
 		velocity.x = Min<float>(Max<float>(velocity.x, -max_speed), max_speed);
 	}
@@ -85,7 +89,7 @@ void Player::Movement()
 	{
 		if (velocity.x < -1e-6f)
 		{
-			float calc_speed = velocity.x + 0.1;
+			float calc_speed = velocity.x + 0.1f;
 			velocity.x = Min<float>(calc_speed, 0.0f);
 		}
 		else if (1e-6f < velocity.x)
@@ -94,6 +98,7 @@ void Player::Movement()
 			velocity.x = Max<float>(calc_speed, 0.0f);
 		}
 	}
+	//画面外に行かないように制限する
 	if (location.x < (box_size.x / 2.0f))
 	{
 		velocity.x = 0.0f;
@@ -104,6 +109,7 @@ void Player::Movement()
 		velocity.x = 0.0f;
 		location.x = 640.0f - (box_size.x / 2.0f);
 	}
+	//位置座標を仮想区度分ずらしてあげる
 	location += velocity;
 }
 

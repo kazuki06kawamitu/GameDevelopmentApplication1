@@ -22,6 +22,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance,
 	}
 	//裏画面から描画を始める
 	SetDrawScreen(DX_SCREEN_BACK);
+	
 
 	//ローカル変数定義
 	Scene* scene = new Scene();//シーンを生成する

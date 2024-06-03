@@ -5,6 +5,7 @@ Enemy::Enemy() :animation_count(0), direction(0.0f)
 {
 	animation[0] = NULL;
 	animation[1] = NULL;
+	
 }
 
 Enemy::~Enemy()
@@ -64,7 +65,7 @@ void Enemy::Draw() const
 	}
 
 	//情報を基にハコテキ画像を描画する
-	DrawRotaGraphF(location.x, location.y, 1.0, radian, image, TRUE, flip_flag);
+	DrawRotaGraphF(location.x, location.y, 0.5, radian, image, TRUE, flip_flag);
 
 	//親クラスの描画処理を呼び出す
 	__super::Draw();
@@ -75,7 +76,7 @@ void Enemy::Finalize()
 {
 	//使用した画像を解放
 	DeleteGraph(animation[0]);
-	DeleteGraph(animation[1]);
+
 }
 
 //当たり判定通知処理
