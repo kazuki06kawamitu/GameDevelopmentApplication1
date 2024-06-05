@@ -89,7 +89,7 @@ void GoldEnemy::Finalize()
 void GoldEnemy::OnHitCollision(GameObject* hit_object)
 {
 	//“–‚½‚Á‚½‚Ìˆ—
-	direction = 0.0f;
+	//direction = 0.0f;
 }
 
 //ˆÚ“®ˆ—

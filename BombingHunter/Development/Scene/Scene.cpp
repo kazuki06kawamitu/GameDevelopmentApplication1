@@ -1,6 +1,7 @@
 #include "Scene.h"
 
 #include "../Objects/Player/Player.h"
+#include "../Objects/Weapon/bomb.h"
 #include "../Objects/Enemy/Enemy.h"
 #include "../Objects/Enemy/WingEnemy.h"
 #include "../Objects/Enemy/Harpy.h"
@@ -28,6 +29,7 @@ void Scene::Initialize()
 {
 	//プレイヤーを生成する
 	CreateObject<Player>(Vector2D(320.0f, 65.0f));
+	
 	
 	back_ground_image = LoadGraph("Resource/Images/BackGround.png");
 }
@@ -57,18 +59,23 @@ void Scene::Update()
 	//Zキーを押したら、敵を生成する
 	if (InputControl::GetKeyDown(KEY_INPUT_Z))
 	{
-		int rand = GetRand(3);
-		CreateObject<Enemy>(Vector2D(100.0f, 150.0f+(rand*100)));
-		CreateObject<WingEnemy>(Vector2D(100.f, 100.0f + (rand * 100)));
-		CreateObject<Harpy>(Vector2D(100.0f, 200.0f + (rand * 100)));
+		int rand = GetRand(1);
+		CreateObject<Enemy>(Vector2D(100.0f, 400.0f));//+(rand*100)
+		CreateObject<WingEnemy>(Vector2D(100.f, 250.0f + (rand * 100)));
+		CreateObject<Harpy>(Vector2D(100.0f, 150.0f + (rand * 100)));
 		CreateObject<GoldEnemy>(Vector2D(100.0f, 400.0f));
+	}
+
+	if (InputControl::GetKeyDown(KEY_INPUT_SPACE))
+	{
+		CreateObject<Bomb>(Vector2D(objects[0]->GetLocation()));
 	}
 }
 
 //描画処理
 void Scene::Draw()const
 {
-	DrawRotaGraph(0.0f, 480.0f, 1.0,0.0f, back_ground_image, TRUE,FALSE);
+	DrawRotaGraph(320, 240, 0.67,0.0f, back_ground_image, TRUE,FALSE);
 	//シーンに存在するオブジェクトの描画処理
 	for (GameObject* obj : objects)
 	{
