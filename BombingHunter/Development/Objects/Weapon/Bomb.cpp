@@ -26,10 +26,13 @@ void Bomb::Initialize()
 	radian = DX_PI_F/2;
 
 	//当たり判定の大きさを設定
-	box_size = 64.0f;
+	box_size = 30.0f;
 
 	//初期進行方向の設定
 	direction = Vector2D(0.0f, 1.0f);
+
+	//
+	object_flag = D_BOMB;
 }
 
 //更新処理
@@ -77,22 +80,16 @@ void Bomb::Finalize()
 void Bomb::OnHitCollision(GameObject* hit_object)
 {
 	//当たった時の処理
-	//direction = 0.0f;
+	direction = 0.0f;
+	box_size = 0.0f;
 }
 
 //移動処理
 void Bomb::Movement()
 {
-	//画面端に到達したら、進行方向を反転する
-
-	if (((location.x + direction.x) < box_size.x) ||
-		(640.0f - box_size.x) < (location.x + direction.x))
-	{
-		direction.x == 0.0f;
-	}
-
+	//地面に到達したら、画像と判定をなくす
 	if (((location.y + direction.y) < box_size.y) ||
-		(480.0f - box_size.y) < (location.y + direction.y))
+		(100.0f - box_size.y) < (location.y + direction.y))
 	{
 		direction.y == 0.0f;
 	}

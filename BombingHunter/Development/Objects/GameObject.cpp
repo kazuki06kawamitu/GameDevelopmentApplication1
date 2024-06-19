@@ -78,3 +78,8 @@ Vector2D GameObject::GetBoxSize() const
 {
 	return box_size;
 }
+
+int GameObject::GetObjectFlag() const
+{
+	return object_flag;
+}

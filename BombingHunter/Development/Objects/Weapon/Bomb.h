@@ -6,6 +6,7 @@ class Bomb :public GameObject
 {
 private:
 	Vector2D direction;  //is•ûŒü
+	int object_flag;
 
 public:
 	Bomb();

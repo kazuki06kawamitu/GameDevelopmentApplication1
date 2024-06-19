@@ -35,7 +35,7 @@ void GoldEnemy::Initialize()
 	radian = 0.0f;
 
 	//“–‚½‚è”»’è‚Ì‘å‚«‚³‚ğİ’è
-	box_size = 64.0f;
+	box_size = 30.0f;
 
 	//‰Šú‰æ‘œ‚Ìİ’è
 	image = animation[0];

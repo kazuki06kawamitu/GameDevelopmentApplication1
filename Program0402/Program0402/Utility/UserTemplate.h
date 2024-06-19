@@ -1,7 +1,7 @@
 #pragma once
 
 template <typename T>
-T abs(T value)
+T Abs(T value)
 {
 	T result;
 

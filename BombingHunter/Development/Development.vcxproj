@@ -26,6 +26,7 @@
     <ClCompile Include="Objects\Enemy\WingEnemy.cpp" />
     <ClCompile Include="Objects\GameObject.cpp" />
     <ClCompile Include="Objects\Player\Player.cpp" />
+    <ClCompile Include="Objects\Weapon\Blast.cpp" />
     <ClCompile Include="Objects\Weapon\Bomb.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
     <ClCompile Include="Utility\InputControl.cpp" />
@@ -38,6 +39,7 @@
     <ClInclude Include="Objects\Enemy\WingEnemy.h" />
     <ClInclude Include="Objects\GameObject.h" />
     <ClInclude Include="Objects\Player\Player.h" />
+    <ClInclude Include="Objects\Weapon\Blast.h" />
     <ClInclude Include="Objects\Weapon\Bomb.h" />
     <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Utility\InputControl.h" />

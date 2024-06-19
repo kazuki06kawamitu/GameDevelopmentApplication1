@@ -33,6 +33,9 @@ void Player::Initialize()
 
 	//初期画像の設定
 	image = animation[0];
+
+	//
+	object_flag = D_PLAYER;
 }
 
 //更新処理
@@ -93,6 +96,13 @@ void Player::Movement()
 		flip_flag = FALSE;
 	}
 	else
+	{
+		velocity.x = 0.0f;
+	}
+
+	//画面端に到達したら、止めるする
+	if (((location.x + velocity.x) < (95-box_size.x) ||
+		(680.0f - box_size.x) < (location.x + velocity.x)))
 	{
 		velocity.x = 0.0f;
 	}

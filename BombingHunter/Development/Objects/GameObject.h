@@ -4,6 +4,10 @@
 
 #define D_PIVOT_CENTER  //座標の原点を画像の中心にする
 
+#define D_PLAYER (0)
+#define D_ENEMY (1)
+#define D_BOMB (0)
+
 //ゲームオブジェクト基底クラス
 class GameObject
 {
@@ -14,6 +18,7 @@ protected:
 	double radian;      //向き
 	double image;       //描画する画像
 	int sound;          //再生する音源
+	int object_flag;
 
 public:
 	GameObject();
@@ -33,4 +38,6 @@ public:
 	void SetLocation(const Vector2D& location);
 	//当たり判定の大きさを取得する
 	Vector2D GetBoxSize() const;
+	//
+	int GetObjectFlag() const;
 };

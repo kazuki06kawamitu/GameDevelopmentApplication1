@@ -1,7 +1,8 @@
 #include "Scene.h"
 
 #include "../Objects/Player/Player.h"
-#include "../Objects/Weapon/bomb.h"
+#include "../Objects/Weapon/Bomb.h"
+#include "../Objects/Weapon/Blast.h"
 #include "../Objects/Enemy/Enemy.h"
 #include "../Objects/Enemy/WingEnemy.h"
 #include "../Objects/Enemy/Harpy.h"
@@ -61,20 +62,22 @@ void Scene::Update()
 	{
 		int rand = GetRand(1);
 		CreateObject<Enemy>(Vector2D(100.0f, 400.0f));//+(rand*100)
-		CreateObject<WingEnemy>(Vector2D(100.f, 250.0f + (rand * 100)));
-		CreateObject<Harpy>(Vector2D(100.0f, 150.0f + (rand * 100)));
-		CreateObject<GoldEnemy>(Vector2D(100.0f, 400.0f));
+		//CreateObject<WingEnemy>(Vector2D(100.f, 250.0f + (rand * 100)));
+		//CreateObject<Harpy>(Vector2D(100.0f, 150.0f + (rand * 100)));
+		//CreateObject<GoldEnemy>(Vector2D(100.0f, 400.0f));
 	}
 
 	if (InputControl::GetKeyDown(KEY_INPUT_SPACE))
 	{
-		CreateObject<Bomb>(Vector2D(objects[0]->GetLocation()));
+		Vector2D player = objects[0]->GetLocation();
+		CreateObject<Bomb>(Vector2D(player.x, 130.0));
 	}
 }
 
 //描画処理
 void Scene::Draw()const
 {
+	//背景の角度
 	DrawRotaGraph(320, 240, 0.67,0.0f, back_ground_image, TRUE,FALSE);
 	//シーンに存在するオブジェクトの描画処理
 	for (GameObject* obj : objects)
@@ -115,14 +118,19 @@ void Scene::HitCheckObject(GameObject* a, GameObject* b)
 	//2つのオブジェクトの当たり判定の大きさを取得
 	Vector2D box_size = (a->GetBoxSize() + b->GetBoxSize()) / 2.0f;
 
-	//距離より大きさが大きい場合、Hit判定とする
-	if ((fabsf(diff.x) < box_size.x) && (fabsf(diff.y) < box_size.y))
+	if (a->GetObjectFlag() != b->GetObjectFlag())
 	{
-		//当たったことをオブジェクトに通知する
-		a->OnHitCollision(b);
-		b->OnHitCollision(a);
+		//距離より大きさが大きい場合、Hit判定とする
+	if ((fabsf(diff.x) < box_size.x) && (fabsf(diff.y) < box_size.y))
+		{
+			//当たったことをオブジェクトに通知する
+			a->OnHitCollision(b);
+  			b->OnHitCollision(a);
 
+		}
+		
 	}
+	
 }
 #else
 

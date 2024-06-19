@@ -34,11 +34,14 @@ private:
 	//～コピーガード
 
 public:
+	~ResourceManager() = default;
+
+public:
 	/// <summary>
 	///リソース管理クラスのインスタンス取得処理
 	/// </summary>
 	/// <returns>クラスのポインタ</returns>
-	static ResourceManager* Getinstance();
+	static ResourceManager* GetInstance();
 
 	///<summary>
 	///リソース管理クラスのインスタンス取得処理
@@ -61,14 +64,21 @@ public:
 		int num_x = -1, int num_y = 1, int size_x = 0, int size_y = 0);
 	const std::vector<int>& GetImages(const char* file_name, int all_num = 1,
 		int num_x = 1, int num_y = 1, int size_x = 0, int size_y = 0);
-	const std::vector<int>& Getimages(MaterialParam element);
+	const std::vector<int>& GetImages(MaterialParam element);
 
+	/**
+	*すべての画像を削除する
+	*@param material_handle 削除したい画像ハンドルのstd::vector配列
+	*/
+	void UnloadResourcesAll();
+
+private:
 	/**
 	*すべての画像を削除する
 	*@param file_name ファイルパス
 	*/
 	void CreateImagesResource(std::string file_name);
-	/**
+	/*
 	*画像ハンドルを読込みリソースを作成する
 	*@param file_name ファイルパス
 	*@param all_num  画像の総数
@@ -77,6 +87,6 @@ public:
 	*@param size_x  横のサイズ(px)
 	*@param size_y  縦のサイズ(px)
 	*/
-	void CreateimagesResource(std::string file_name, int all_num, int num_x, int num_y,
+	void CreateImagesResource(std::string file_name, int all_num, int num_x, int num_y,
 		int size_x, int size_y);
 };

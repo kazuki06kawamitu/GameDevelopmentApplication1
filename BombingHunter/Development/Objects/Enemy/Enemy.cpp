@@ -29,13 +29,16 @@ void Enemy::Initialize()
 	radian = 0.0f;
 
 	//当たり判定の大きさを設定
-	box_size = 64.0f;
+	box_size = 50.0f;
 
 	//初期画像の設定
 	image = animation[0];
 
 	//初期進行方向の設定
 	direction = Vector2D(1.0f,0.0f);
+
+	//
+	object_flag = D_ENEMY;
 }
 
 //更新処理
@@ -82,8 +85,8 @@ void Enemy::Finalize()
 //当たり判定通知処理
 void Enemy::OnHitCollision(GameObject* hit_object)
 {
-	//当たった時の処理
-	//direction = 0.0f;
+	direction = 0.0f;
+	box_size = 0.0f;
 }
 
 //移動処理
