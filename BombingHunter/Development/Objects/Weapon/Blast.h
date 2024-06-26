@@ -28,6 +28,12 @@ public:
 	//“–‚½‚è”»’è’Ê’mˆ—
 	virtual void OnHitCollision(GameObject* hit_object) override;
 
+	//
+	virtual Vector2D GetLocation();
+
+	//
+	void SetDirection(Vector2D p_loc);
+
 private:
 	//ˆÚ“®ˆ—
 	void Movement();

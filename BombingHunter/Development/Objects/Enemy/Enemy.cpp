@@ -1,5 +1,6 @@
 #include "Enemy.h"
 #include "DxLib.h"
+#include "../Weapon/Bomb.h"
 
 Enemy::Enemy() :animation_count(0), direction(0.0f)
 {
@@ -37,7 +38,7 @@ void Enemy::Initialize()
 	//初期進行方向の設定
 	direction = Vector2D(1.0f,0.0f);
 
-	//
+	//識別
 	object_flag = D_ENEMY;
 }
 
@@ -79,14 +80,21 @@ void Enemy::Finalize()
 {
 	//使用した画像を解放
 	DeleteGraph(animation[0]);
+	DeleteGraph(animation[1]);
 
 }
 
 //当たり判定通知処理
 void Enemy::OnHitCollision(GameObject* hit_object)
 {
-	direction = 0.0f;
-	box_size = 0.0f;
+	if (dynamic_cast<Bomb*>(hit_object) != nullptr)
+	{
+		direction = 0.0f;
+		box_size = 0.0f;
+		Finalize();
+	}
+	
+
 }
 
 //移動処理
@@ -131,4 +139,9 @@ void Enemy::AnimationControl()
 			image = animation[0];
 		}
 	}
+}
+
+Vector2D  Enemy:: GetLocation()
+{
+	return location;
 }

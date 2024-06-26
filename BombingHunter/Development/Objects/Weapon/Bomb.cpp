@@ -1,9 +1,17 @@
 #include "Bomb.h"
 #include "DxLib.h"
+#include "../Enemy/Enemy.h"
+#include "../Enemy/GoldEnemy.h"
+#include "../Enemy/Harpy.h"
+#include "../Enemy/WingEnemy.h"
+#include <vector>
 
 Bomb::Bomb() : direction(0.0f)
 {
-
+	animation[0] = NULL;
+	animation[1] = NULL;
+	animation[2] = NULL;
+	animation_count = 0;
 }
 
 Bomb::~Bomb()
@@ -15,6 +23,10 @@ void Bomb::Initialize()
 {
 	//画像の読み込み
 	image = LoadGraph("Resource/Images/Bomb/Bomb.png");
+	//画像の読み込み
+	animation[0] = LoadGraph("Resource/Images/Blast/1.png");
+	animation[1] = LoadGraph("Resource/Images/Blast/2.png");
+	animation[2] = LoadGraph("Resource/Images/Blast/3.png");
 
 	//エラーチェック
 	if (image== -1)
@@ -42,7 +54,8 @@ void Bomb::Update()
 	Movement();
 
 	//アニメーション制御
-	//AnimationControl();
+	AnimationControl();
+	//animation_count++;
 }
 
 //描画処理
@@ -80,18 +93,49 @@ void Bomb::Finalize()
 void Bomb::OnHitCollision(GameObject* hit_object)
 {
 	//当たった時の処理
-	direction = 0.0f;
-	box_size = 0.0f;
+	if (dynamic_cast<Enemy*>(hit_object) != nullptr)
+	{
+		DeleteGraph(image);
+		image = animation[0];
+		radian = 0.0;
+		direction = 0.0f;
+		
+	}
+	if (dynamic_cast<GoldEnemy*>(hit_object) != nullptr)
+	{
+		DeleteGraph(image);
+		image = animation[0];
+		radian = 0.0;
+		direction = 0.0f;
+	}
+	if (dynamic_cast<Harpy*>(hit_object) != nullptr)
+	{
+		DeleteGraph(image);
+		image = animation[0];
+		radian = 0.0;
+		direction = 0.0f;
+	}
+	if (dynamic_cast<WingEnemy*>(hit_object) != nullptr)
+	{
+		DeleteGraph(image);
+		image = animation[0];
+		radian = 0.0;
+		direction = 0.0f;
+	}
+	
+	
 }
-
 //移動処理
 void Bomb::Movement()
 {
 	//地面に到達したら、画像と判定をなくす
 	if (((location.y + direction.y) < box_size.y) ||
-		(100.0f - box_size.y) < (location.y + direction.y))
+		(380.0f + box_size.y) < (location.y + direction.y))
 	{
-		direction.y == 0.0f;
+		DeleteGraph(image);
+		image = animation[0];
+		radian = 0.0;
+		direction = 0.0f;
 	}
 
 	//進行方向に向かって、位置座標を変更する
@@ -99,25 +143,31 @@ void Bomb::Movement()
 }
 
 //アニメーション制御
-//void Bomb::AnimationControl()
-//{
-//	//アニメーションカウントを加算する
-//	animation_count++;
-//
-//	//30フレーム目に到達したら
-//	if (animation_count >= 30)
-//	{
-//		//カウントリセット
-//		animation_count = 0;
-//
-//		//画像の切替
-//		if (image == animation[0])
-//		{
-//			image = animation[1];
-//		}
-//		else
-//		{
-//			image = animation[0];
-//		}
-//	}
-//}
+void Bomb::AnimationControl()
+{
+	//アニメーションカウントを加算する
+	animation_count++;
+	//30フレーム目に到達したら
+	if (animation_count >= 60)
+	{
+		//カウントリセット
+		animation_count = 0;
+
+		//画像の切替
+		if (image == animation[0])
+		{
+			image = animation[1];
+		}
+		else if (image == animation[1])
+		{
+			image = animation[2];
+			delete_flag = TRUE;
+		}
+		else
+		{
+			
+			
+		}
+		animation_count = 0;
+	}
+}

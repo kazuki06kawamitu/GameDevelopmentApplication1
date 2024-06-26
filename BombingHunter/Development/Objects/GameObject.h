@@ -7,6 +7,10 @@
 #define D_PLAYER (0)
 #define D_ENEMY (1)
 #define D_BOMB (0)
+#define D_WINGENEMY (1)
+#define D_HARPY (1)
+#define D_GOLDENEMY (1)
+#define D_ENEMYBULLET (1)
 
 //ゲームオブジェクト基底クラス
 class GameObject
@@ -16,11 +20,15 @@ protected:
 	Vector2D box_size;  //当たり判定の大きさ
 	double scale;       //大きさ
 	double radian;      //向き
-	double image;       //描画する画像
+	int image;       //描画する画像
 	int sound;          //再生する音源
-	int object_flag;
+	
 
 public:
+	int object_flag;
+	bool delete_flag;
+	bool DeleteObject();
+
 	GameObject();
 	virtual ~GameObject();
 
@@ -38,6 +46,6 @@ public:
 	void SetLocation(const Vector2D& location);
 	//当たり判定の大きさを取得する
 	Vector2D GetBoxSize() const;
-	//
+	//当たり判定の識別
 	int GetObjectFlag() const;
 };

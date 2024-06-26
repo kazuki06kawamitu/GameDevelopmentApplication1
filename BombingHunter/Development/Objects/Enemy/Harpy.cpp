@@ -1,5 +1,6 @@
 #include "Harpy.h"
 #include "DxLib.h"
+#include "../Weapon/Bomb.h"
 
 Harpy::Harpy() :animation_count(0), direction(0.0f)
 {
@@ -36,6 +37,9 @@ void Harpy::Initialize()
 
 	//初期進行方向の設定
 	direction = Vector2D(1.0f, 0.0f);
+
+	//識別
+	object_flag = D_HARPY;
 }
 
 //更新処理
@@ -76,6 +80,7 @@ void Harpy::Finalize()
 {
 	//使用した画像を解放
 	DeleteGraph(animation[0]);
+	DeleteGraph(animation[1]);
 
 }
 
@@ -83,7 +88,12 @@ void Harpy::Finalize()
 void Harpy::OnHitCollision(GameObject* hit_object)
 {
 	//当たった時の処理
-	//direction = 0.0f;
+	if (dynamic_cast<Bomb*>(hit_object) != nullptr)
+	{
+		direction = 0.0f;
+		box_size = 0.0f;
+		Finalize();
+	}
 }
 
 //移動処理

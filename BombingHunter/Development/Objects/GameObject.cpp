@@ -8,7 +8,8 @@ GameObject::GameObject() :
 	scale(0.0),
 	radian(0.0),
 	image(0),
-	sound(0)
+	sound(0),
+	delete_flag(FALSE)
 {
 
 }
@@ -82,4 +83,9 @@ Vector2D GameObject::GetBoxSize() const
 int GameObject::GetObjectFlag() const
 {
 	return object_flag;
+}
+
+bool GameObject::DeleteObject()
+{
+	return this->delete_flag;
 }

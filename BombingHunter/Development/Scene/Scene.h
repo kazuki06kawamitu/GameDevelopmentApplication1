@@ -18,6 +18,7 @@ public:
 	void Update();
 	void Draw()const;
 	void Finalize();
+	void Spown();
 
 private:
 	//当たり判定チェック処理

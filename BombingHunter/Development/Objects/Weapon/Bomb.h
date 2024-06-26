@@ -6,7 +6,9 @@ class Bomb :public GameObject
 {
 private:
 	Vector2D direction;  //進行方向
-	int object_flag;
+	int animation[3];  //アニメション画像
+	int animation_count;  //アニメション時間
+	//int object_flag;
 
 public:
 	Bomb();
@@ -31,5 +33,5 @@ private:
 	//移動処理
 	void Movement();
 	//アニメーション制御
-	//void AnimationControl();
+	void AnimationControl();
 };

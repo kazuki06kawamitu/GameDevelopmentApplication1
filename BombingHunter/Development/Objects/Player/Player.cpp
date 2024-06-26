@@ -34,7 +34,7 @@ void Player::Initialize()
 	//初期画像の設定
 	image = animation[0];
 
-	//
+	//オブジェクトの数値設定
 	object_flag = D_PLAYER;
 }
 
@@ -133,4 +133,9 @@ void Player::AnimationControl()
 			image = animation[0];
 		}
 	}
+}
+
+Vector2D Player::SetLocation()
+{
+	return location;
 }

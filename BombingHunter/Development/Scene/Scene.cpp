@@ -1,5 +1,6 @@
 #include "Scene.h"
 
+
 #include "../Objects/Player/Player.h"
 #include "../Objects/Weapon/Bomb.h"
 #include "../Objects/Weapon/Blast.h"
@@ -28,9 +29,14 @@ Scene::~Scene()
 //初期化処理
 void Scene::Initialize()
 {
+	int rand = GetRand(1);
 	//プレイヤーを生成する
 	CreateObject<Player>(Vector2D(320.0f, 65.0f));
-	
+	CreateObject<Enemy>(Vector2D(100.0f, 400.0f));
+	CreateObject<WingEnemy>(Vector2D(100.f, 250.0f + (rand * 100)));
+	CreateObject<Harpy>(Vector2D(100.0f, 150.0f + (rand * 100)));
+	CreateObject<GoldEnemy>(Vector2D(100.0f, 400.0f));
+
 	
 	back_ground_image = LoadGraph("Resource/Images/BackGround.png");
 }
@@ -55,23 +61,31 @@ void Scene::Update()
 			//当たり判定チェック処理
 			HitCheckObject(objects[i], objects[j]);
 		}
+		if (objects[i]->DeleteObject() == TRUE)
+		{
+			this->objects.erase(objects.begin() + i);
+		}
 	}
 
-	//Zキーを押したら、敵を生成する
+	//Zキーを押したら、敵の攻撃をだす
 	if (InputControl::GetKeyDown(KEY_INPUT_Z))
 	{
-		int rand = GetRand(1);
-		CreateObject<Enemy>(Vector2D(100.0f, 400.0f));//+(rand*100)
-		//CreateObject<WingEnemy>(Vector2D(100.f, 250.0f + (rand * 100)));
-		//CreateObject<Harpy>(Vector2D(100.0f, 150.0f + (rand * 100)));
-		//CreateObject<GoldEnemy>(Vector2D(100.0f, 400.0f));
+
+		Vector2D enemy = objects[1]->GetLocation();
+		Blast* blast = CreateObject<Blast>(Vector2D(enemy.x, enemy.y));
+
+		blast->SetDirection(objects[0]->GetLocation());
+
 	}
 
+	//
 	if (InputControl::GetKeyDown(KEY_INPUT_SPACE))
 	{
 		Vector2D player = objects[0]->GetLocation();
 		CreateObject<Bomb>(Vector2D(player.x, 130.0));
 	}
+
+	
 }
 
 //描画処理
@@ -86,6 +100,11 @@ void Scene::Draw()const
 	
 
 	}
+}
+
+void Scene::Spown()
+{
+
 }
 
 //終了時処理

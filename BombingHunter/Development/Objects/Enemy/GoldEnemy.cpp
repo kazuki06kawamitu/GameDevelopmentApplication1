@@ -1,5 +1,6 @@
 #include "GoldEnemy.h"
 #include "DxLib.h"
+#include "../Weapon/Bomb.h"
 
 GoldEnemy::GoldEnemy() :animation_count(0), direction(0.0f)
 {
@@ -41,7 +42,9 @@ void GoldEnemy::Initialize()
 	image = animation[0];
 
 	//初期進行方向の設定
-	direction = Vector2D(5.0f, 0.0f);
+	direction = Vector2D(2.0f, 0.0f);
+	//識別
+	object_flag = D_GOLDENEMY;
 }
 
 //更新処理
@@ -82,6 +85,10 @@ void GoldEnemy::Finalize()
 {
 	//使用した画像を解放
 	DeleteGraph(animation[0]);
+	DeleteGraph(animation[1]);
+	DeleteGraph(animation[2]);
+	DeleteGraph(animation[3]);
+	DeleteGraph(animation[4]);
 
 }
 
@@ -89,7 +96,12 @@ void GoldEnemy::Finalize()
 void GoldEnemy::OnHitCollision(GameObject* hit_object)
 {
 	//当たった時の処理
-	//direction = 0.0f;
+	if (dynamic_cast<Bomb*>(hit_object) != nullptr)
+	{
+		direction = 0.0f;
+		box_size = 0.0f;
+		Finalize();
+	}
 }
 
 //移動処理
