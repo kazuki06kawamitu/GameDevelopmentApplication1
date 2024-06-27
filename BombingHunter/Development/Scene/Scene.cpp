@@ -29,15 +29,10 @@ Scene::~Scene()
 //初期化処理
 void Scene::Initialize()
 {
-	int rand = GetRand(1);
+	
 	//プレイヤーを生成する
 	CreateObject<Player>(Vector2D(320.0f, 65.0f));
-	CreateObject<Enemy>(Vector2D(100.0f, 400.0f));
-	CreateObject<WingEnemy>(Vector2D(100.f, 250.0f + (rand * 100)));
-	CreateObject<Harpy>(Vector2D(100.0f, 150.0f + (rand * 100)));
-	CreateObject<GoldEnemy>(Vector2D(100.0f, 400.0f));
 
-	
 	back_ground_image = LoadGraph("Resource/Images/BackGround.png");
 }
 
@@ -102,8 +97,17 @@ void Scene::Draw()const
 	}
 }
 
+//ランダムに敵を出現させる
 void Scene::Spown()
 {
+	int loc = GetRand(1);
+	for (int i = 0; i == 100; i++)
+	{
+		CreateObject<Enemy>(Vector2D(100.0f, 400.0f));
+		CreateObject<WingEnemy>(Vector2D(100.f, 250.0f+(loc*100)));
+		CreateObject<Harpy>(Vector2D(100.0f, 150.0f)+(loc*100));
+		CreateObject<GoldEnemy>(Vector2D(100.0f, 400.0f));
+	}
 
 }
 
