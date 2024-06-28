@@ -8,7 +8,7 @@ private:
 	Vector2D direction;  //進行方向
 	int animation[3];  //アニメション画像
 	int animation_count;  //アニメション時間
-	//int object_flag;
+	
 
 public:
 	Bomb();

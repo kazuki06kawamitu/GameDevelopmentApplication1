@@ -4,11 +4,16 @@
 //#include <string>
 #include "../Objects/GameObject.h"
 
+#define D_FREAME (144)
 class Scene
 {
 private:
 	int back_ground_image;
 	std::vector<GameObject*>objects;
+	int time;
+	int tc;
+	int ui_image[10];
+	int score;
 
 public:
 	Scene();
@@ -19,6 +24,8 @@ public:
 	void Draw()const;
 	void Finalize();
 	void Spown();
+	void CountTimer();
+	void Score();
 
 private:
 	//当たり判定チェック処理

@@ -14,7 +14,7 @@
 #define D_PIVOT_CENTER
 
 //コンストラクタ
-Scene::Scene() : objects(), back_ground_image(NULL)
+Scene::Scene() : objects(), back_ground_image(NULL),time(60), tc(0),ui_image(), score()
 {
 	
 }
@@ -32,8 +32,19 @@ void Scene::Initialize()
 	
 	//プレイヤーを生成する
 	CreateObject<Player>(Vector2D(320.0f, 65.0f));
+	ui_image[0] = LoadGraph("Resource/Images/Score/0.png");
+	ui_image[1] = LoadGraph("Resource/Images/Score/1.png");
+	ui_image[2] = LoadGraph("Resource/Images/Score/2.png");
+	ui_image[3] = LoadGraph("Resource/Images/Score/3.png");
+	ui_image[4] = LoadGraph("Resource/Images/Score/4.png");
+	ui_image[5] = LoadGraph("Resource/Images/Score/5.png");
+	ui_image[6] = LoadGraph("Resource/Images/Score/6.png");
+	ui_image[7] = LoadGraph("Resource/Images/Score/7.png");
+	ui_image[8] = LoadGraph("Resource/Images/Score/8.png");
+	ui_image[9] = LoadGraph("Resource/Images/Score/9.png");
 
 	back_ground_image = LoadGraph("Resource/Images/BackGround.png");
+	
 }
 
 //更新処理
@@ -46,8 +57,8 @@ void Scene::Update()
 
 	}
 
-	
-
+	Spown();
+	CountTimer();
 	//オブジェクト同市の当たり判定チェック
 	for (int i = 0; i < objects.size(); i++)
 	{
@@ -86,8 +97,13 @@ void Scene::Update()
 //描画処理
 void Scene::Draw()const
 {
+
+	
+
 	//背景の角度
 	DrawRotaGraph(320, 240, 0.67,0.0f, back_ground_image, TRUE,FALSE);
+	//
+	
 	//シーンに存在するオブジェクトの描画処理
 	for (GameObject* obj : objects)
 	{
@@ -100,15 +116,63 @@ void Scene::Draw()const
 //ランダムに敵を出現させる
 void Scene::Spown()
 {
-	int loc = GetRand(1);
-	for (int i = 0; i == 100; i++)
-	{
-		CreateObject<Enemy>(Vector2D(100.0f, 400.0f));
-		CreateObject<WingEnemy>(Vector2D(100.f, 250.0f+(loc*100)));
-		CreateObject<Harpy>(Vector2D(100.0f, 150.0f)+(loc*100));
-		CreateObject<GoldEnemy>(Vector2D(100.0f, 400.0f));
-	}
+	int spownenemy = GetRand(6);
+	int loc_y = GetRand(1);
+	int flip = FALSE;
 
+	
+	int spowncount = rand() % 100 + 1;
+	if (spowncount <= 1)
+	{
+		switch (spownenemy)
+		{
+		case 0:
+			CreateObject<Enemy>(Vector2D(100.0f, 400.0f));
+			break;
+		case 1:
+			CreateObject<Enemy>(Vector2D(500.0f, 400.0f));
+			break;
+
+		case 2:
+			CreateObject<WingEnemy>(Vector2D(100.f, 250.0f + (loc_y * 100)));
+			break;
+
+		case 3:
+			CreateObject<WingEnemy>(Vector2D(500.f, -250.0f + (loc_y * 100)));
+			break;
+
+		case 4:
+			CreateObject<Harpy>(Vector2D(100.0f, 150.0f + (loc_y * 100)));
+			break;
+		case 5:
+			CreateObject<Harpy>(Vector2D(500.0f, -150.0f + (loc_y * 100)));
+			break;
+		default:
+			//CreateObject<GoldEnemy>(Vector2D(100.0f, 400.0f));
+			break;
+		}
+	}
+		
+
+}
+
+//制限時間を追加
+void Scene::CountTimer()
+{
+	tc++;
+	if (tc >= D_FREAME)
+	{
+		time--;
+		tc = 0;
+	}
+}
+
+void Scene::Score()
+{
+	for (int i = 0; i < objects.size(); i++)
+	{
+
+	}
 }
 
 //終了時処理

@@ -104,13 +104,13 @@ void Enemy::Movement()
 	if (((location.x + direction.x) < box_size.x) ||
 		(640.0f - box_size.x) < (location.x + direction.x))
 	{
-		direction.x *= -1.0f;
+		Finalize();
 	}
 
-	if (((location.y + direction.y) < box_size.y) ||
-		(480.0f - box_size.y) < (location.y + direction.y))
+	if (((location.x - direction.x) < box_size.x) ||
+		(0.0f + box_size.x) < (location.x - direction.x))
 	{
-		direction.y *= -1.0f;
+		Finalize();
 	}
 
 	//進行方向に向かって、位置座標を変更する
@@ -139,9 +139,4 @@ void Enemy::AnimationControl()
 			image = animation[0];
 		}
 	}
-}
-
-Vector2D  Enemy:: GetLocation()
-{
-	return location;
 }
