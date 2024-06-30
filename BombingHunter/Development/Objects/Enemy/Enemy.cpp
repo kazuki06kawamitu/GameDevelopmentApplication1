@@ -102,15 +102,15 @@ void Enemy::Movement()
 {
 	//画面端に到達したら、進行方向を反転する
 	if (((location.x + direction.x) < box_size.x) ||
-		(640.0f - box_size.x) < (location.x + direction.x))
+		(900.0f - box_size.x) < (location.x + direction.x))
 	{
-		Finalize();
+		
 	}
 
 	if (((location.x - direction.x) < box_size.x) ||
-		(0.0f + box_size.x) < (location.x - direction.x))
+		(-50.0f + box_size.x) < (location.x - direction.x))
 	{
-		Finalize();
+		
 	}
 
 	//進行方向に向かって、位置座標を変更する

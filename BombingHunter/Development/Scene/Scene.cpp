@@ -14,7 +14,7 @@
 #define D_PIVOT_CENTER
 
 //コンストラクタ
-Scene::Scene() : objects(), back_ground_image(NULL),time(60), tc(0),ui_image(), score()
+Scene::Scene() : objects(), back_ground_image(NULL),time(60), tc(0),timer_image(), attack_count()
 {
 	
 }
@@ -32,19 +32,15 @@ void Scene::Initialize()
 	
 	//プレイヤーを生成する
 	CreateObject<Player>(Vector2D(320.0f, 65.0f));
-	ui_image[0] = LoadGraph("Resource/Images/Score/0.png");
-	ui_image[1] = LoadGraph("Resource/Images/Score/1.png");
-	ui_image[2] = LoadGraph("Resource/Images/Score/2.png");
-	ui_image[3] = LoadGraph("Resource/Images/Score/3.png");
-	ui_image[4] = LoadGraph("Resource/Images/Score/4.png");
-	ui_image[5] = LoadGraph("Resource/Images/Score/5.png");
-	ui_image[6] = LoadGraph("Resource/Images/Score/6.png");
-	ui_image[7] = LoadGraph("Resource/Images/Score/7.png");
-	ui_image[8] = LoadGraph("Resource/Images/Score/8.png");
-	ui_image[9] = LoadGraph("Resource/Images/Score/9.png");
 
-	back_ground_image = LoadGraph("Resource/Images/BackGround.png");
 	
+	back_ground_image = LoadGraph("Resource/Images/BackGround.png");
+	timer_image = LoadGraph("Resource/Images/TimeLimit/timer-03.png");
+
+	if (timer_image == -1)
+	{
+		throw("時計画像がありません\n");
+	}
 }
 
 //更新処理
@@ -73,18 +69,7 @@ void Scene::Update()
 		}
 	}
 
-	//Zキーを押したら、敵の攻撃をだす
-	if (InputControl::GetKeyDown(KEY_INPUT_Z))
-	{
-
-		Vector2D enemy = objects[1]->GetLocation();
-		Blast* blast = CreateObject<Blast>(Vector2D(enemy.x, enemy.y));
-
-		blast->SetDirection(objects[0]->GetLocation());
-
-	}
-
-	//
+	//スペースキーを押したら、爆弾の攻撃をだす
 	if (InputControl::GetKeyDown(KEY_INPUT_SPACE))
 	{
 		Vector2D player = objects[0]->GetLocation();
@@ -103,6 +88,9 @@ void Scene::Draw()const
 	//背景の角度
 	DrawRotaGraph(320, 240, 0.67,0.0f, back_ground_image, TRUE,FALSE);
 	//
+	DrawRotaGraph(20, 460, 0.5,0,timer_image, TRUE,FALSE);
+	//
+	DrawFormatString(40, 455, GetColor(255, 255, 255),"%d",time);
 	
 	//シーンに存在するオブジェクトの描画処理
 	for (GameObject* obj : objects)
@@ -148,14 +136,26 @@ void Scene::Spown()
 			CreateObject<Harpy>(Vector2D(500.0f, -150.0f + (loc_y * 100)));
 			break;
 		default:
-			//CreateObject<GoldEnemy>(Vector2D(100.0f, 400.0f));
+			
 			break;
 		}
 	}
 		
 
 }
+//自動的に攻撃を出す
+void Scene::AutoAttack()
+{
+	attack_count++;
+	if (attack_count <= D_FREAME)
+	{
+		Vector2D enemy = objects[1]->GetLocation();
+		Blast* blast = CreateObject<Blast>(Vector2D(enemy.x, enemy.y));
 
+		blast->SetDirection(objects[0]->GetLocation());
+		attack_count = 0;
+	}
+}
 //制限時間を追加
 void Scene::CountTimer()
 {
@@ -164,14 +164,10 @@ void Scene::CountTimer()
 	{
 		time--;
 		tc = 0;
-	}
-}
-
-void Scene::Score()
-{
-	for (int i = 0; i < objects.size(); i++)
-	{
-
+		if (time <= 30)
+		{
+			CreateObject<GoldEnemy>(Vector2D(100.0f, 400.0f));
+		}
 	}
 }
 

@@ -27,7 +27,7 @@ protected:
 public:
 	int object_flag;
 	bool delete_flag;
-	bool DeleteObject();
+	
 
 	GameObject();
 	virtual ~GameObject();
@@ -36,6 +36,7 @@ public:
 	virtual void Update();          //更新処理
 	virtual void Draw() const;      //描画処理
 	virtual void Finalize();        //終了処理
+	bool DeleteObject();
 
 	//当たり判定通知処理
 	virtual void OnHitCollision(GameObject* hit_object);

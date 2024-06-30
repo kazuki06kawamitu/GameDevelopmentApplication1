@@ -73,7 +73,7 @@ void GoldEnemy::Draw() const
 		flip_flag = TRUE;
 	}
 
-	//情報を基にハコテキ画像を描画する
+	//情報を基にチビ画像を描画する
 	DrawRotaGraphF(location.x, location.y, 0.5, radian, image, TRUE, flip_flag);
 
 	//親クラスの描画処理を呼び出す

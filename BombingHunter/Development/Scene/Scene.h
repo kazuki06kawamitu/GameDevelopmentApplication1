@@ -4,28 +4,29 @@
 //#include <string>
 #include "../Objects/GameObject.h"
 
+//フレーム計算
 #define D_FREAME (144)
 class Scene
 {
 private:
-	int back_ground_image;
+	int back_ground_image; //背景イメージ
 	std::vector<GameObject*>objects;
-	int time;
-	int tc;
-	int ui_image[10];
-	int score;
+	int time;//タイマー
+	int tc;//カウント
+	int timer_image;//時計
+	int attack_count;//攻撃間隔
 
 public:
 	Scene();
 	~Scene();
 
-	void Initialize();
-	void Update();
-	void Draw()const;
-	void Finalize();
-	void Spown();
-	void CountTimer();
-	void Score();
+	void Initialize();//初期化処理
+	void Update();//更新
+	void Draw()const;//描画
+	void Finalize();//終了処理
+	void Spown();//出現
+	void CountTimer();//時間
+	void AutoAttack();//自動攻撃
 
 private:
 	//当たり判定チェック処理
