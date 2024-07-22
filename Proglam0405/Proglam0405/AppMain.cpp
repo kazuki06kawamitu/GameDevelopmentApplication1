@@ -1,10 +1,9 @@
 #include "DxLib.h"
 #include "Scene/SceneManager.h"
 
-//メイン関数(プログラムはここからはじまります)
-int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
-	_In_ LPSTR lpCmdLine,
-	_In_ int nShowCmd)
+//プログラムはWinMainからはじまります
+int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_
+	HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
 {
 	//ローカル変数定義
 	SceneManager* scene_manager = nullptr;
@@ -19,7 +18,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 		scene_manager->Initialize();
 
 		//更新処理
-		scene_manager->Run();
+		scene_manager->Update();
 
 		//終了処理
 		scene_manager->Finalize();
@@ -30,15 +29,12 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 		OutputDebugString(error_log);
 		result = -1;
 	}
-
 	//シーンマネージャーを生成していたら、削除する
-	if (scene_manager !=nullptr)
+	if (scene_manager != nullptr)
 	{
-		scene_manager->Finalize();
 		delete scene_manager;
 		scene_manager = nullptr;
 	}
-
 	//終了状態を通知
 	return result;
 }

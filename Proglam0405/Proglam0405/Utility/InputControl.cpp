@@ -19,14 +19,14 @@ InputControl::~InputControl()
 InputControl* InputControl::GetInstance()
 {
 	//インスタンスが生成されてない場合、生成する
-	if (instance = nullptr)
+	if (instance == nullptr)
 	{
 		instance = new InputControl();
 	}
 	return instance;
 }
 
-void InputControl::DeleteInstance()
+void InputContorl::DeleteInstance()
 {
 	if (instance != nullptr)
 	{
@@ -65,7 +65,7 @@ bool InputControl::GetKeyUp(int key_code)const
 }
 
 //キー範囲チェック
-bool InputControl::CheckKeyCodeRange(int key_code)const
+bool InputControl::CheckKeyCodeRange(int key_code) const
 {
-	return (0 <= key_code && key_code < D_KEYCODE_MAX);
+	return (0 <= key_code && Key_code < D_KEYCODE_MAX);
 }

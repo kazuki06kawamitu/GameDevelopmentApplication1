@@ -6,7 +6,7 @@ class SceneManager
 {
 private:
 	SceneBase* current_scene;  //現在シーン情報のポインタ
-
+	bool is_finalize;
 public:
 	SceneManager();
 	~SceneManager();
@@ -15,7 +15,7 @@ public:
 	void Initialize();
 
 	//更新処理
-	void Run();
+	void Update();
 
 	//終了時処理
 	void Finalize();
@@ -23,8 +23,7 @@ public:
 private:
 	//描画処理
 	void Draw() const;
-	//シーンの切り替え処理
+
+	//シーン切り替え処理
 	void ChangeScene(eSceneType type);
-	//シーン生成処理
-	SceneBase* CreateScene(eSceneType type);
 };

@@ -34,7 +34,7 @@ template<typename T>
 T Min(T a, T b)
 {
 	T result;
-	if (a < b)
+	if (a > b)
 	{
 		result = b;
 	}

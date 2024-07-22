@@ -69,10 +69,10 @@ void SceneManager::Run()
 void SceneManager::Finalize()
 {
 	//シーン情報が生成されていれば、削除する
-	if (current_sene != nullptr)
+	if (current_scene != nullptr)
 	{
 		current_scene->Finalize();
-		delete current_sene;
+		delete current_scene;
 		current_scene = nullptr;
 	}
 	//入力機能のインスタンスを削除
@@ -101,7 +101,7 @@ void SceneManager::Draw() const
 /// シーンの切り替え処理
 /// </summary>
 /// <param name="typr">シーンの情報</param>
-void SceneManager::ChangeScene(wSceneType type)
+void SceneManager::ChangeScene(eSceneType type)
 {
 	//引数で渡された情報から新しいシーンを作成する
 	SceneBase* new_scene = CreateScene(type);
