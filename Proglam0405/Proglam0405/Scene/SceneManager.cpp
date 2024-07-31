@@ -4,7 +4,7 @@
 #include "../Utility/InputControl.h"
 #include "../Utility/SceneFactroy.h"
 
-SceneMnager::SceneManager() :current_scene(nullptr), is_finalize(false)
+SceneManager::SceneManager() :current_scene(nullptr), is_finalize(false)
 {
 }
 
@@ -37,7 +37,7 @@ void SceneManager::Initialize()
 void SceneManager::Update()
 {
 	//開始時間を取得
-	LONGLONG start_time = GetNowHiPerflormanceCount();
+	LONGLONG start_time = GetNowHiPerformanceCount();
 
 	//入力機能のインスタンスを取得する
 	InputControl* input = InputControl::GetInstance();
@@ -50,7 +50,7 @@ void SceneManager::Update()
 			start_time) * 0.000001f;
 
 		//開始時間の更新
-		start_time = GetNowhiPerformanceCount();
+		start_time = GetNowHiPerformanceCount();
 
 		input->Update();
 
@@ -61,7 +61,7 @@ void SceneManager::Update()
 		Draw();
 
 		//シーン切り替え
-		if(next_scene_type != current_scene->GetNowSceneTypw())
+		if(next_scene_type != current_scene->GetNowSceneType())
 		{
 			ChangeScene(next_scene_type);
 		}

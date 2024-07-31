@@ -14,7 +14,7 @@
 void Player::Initialize(Vector2D init_location)
 {
 	state = PlayerStateFactory::Get((*this), ePlayerState::IDLE);
-	next_state = wPlayerState::NONE;
+	next_state = ePlayerState::NONE;
 	g_velocity = 0.0f;
 	location = init_location;
 	velocity = Vector2D(0.0f);
@@ -79,7 +79,7 @@ void Player::SetNextState(ePlayerState next_state)
 ///<summary>
 ///ç¿ïWÇÃéÊìæ
 /// </summry>
-Vector2D& Player::Getlocation()
+Vector2D& Player::GetLocation()
 {
 	return this->location;
 }

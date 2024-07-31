@@ -52,7 +52,7 @@ Vector2D& Vector2D::operator-=(const Vector2D& location)
 	return (*this);
 }
 
-const Vector2D& Vector2D::operator*(const float& scalar) const
+const Vector2D Vector2D::operator*(const float& scalar) const
 {
 	return Vector2D((this->x * scalar), (this->y * scalar));
 }
@@ -62,7 +62,7 @@ const Vector2D Vector2D::operator*(const Vector2D& location)const
 	return Vector2D((this->x * location.x), (this->y * location.y));
 }
 
-Vector2D Vector2D::operator*= (const float & scalar)
+Vector2D& Vector2D::operator*= (const float & scalar)
 {
 	this->x *= scalar;
 	this->y *= scalar;
@@ -85,7 +85,7 @@ const Vector2D Vector2D::operator/(const float& scalar)const
 
 const Vector2D Vector2D::operator/(const Vector2D& location)const
 {
-	return Vector2D((this->x / scalar), (this->y / scalar));
+	return Vector2D((this->x / location.x), (this->y / location.y));
 }
 
 Vector2D& Vector2D::operator/=(const float& scalar)

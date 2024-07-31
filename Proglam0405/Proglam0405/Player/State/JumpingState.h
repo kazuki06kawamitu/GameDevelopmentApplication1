@@ -5,7 +5,7 @@
 ///<summary>
 ///ジャンプ状態
 /// </summry>
-class Jumping : public PlayerStateBase
+class JumpingState : public PlayerStateBase
 {
 private:
 	//目フレームの座標情報
@@ -26,7 +26,7 @@ public:
 	virtual void Initialize() override;
 
 	//終了処理関数
-	virtual void Finalize() const override;
+	virtual void Finalize() override;
 
 	//更新処理
 	virtual void Update()override;

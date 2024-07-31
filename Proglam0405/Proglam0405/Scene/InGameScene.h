@@ -8,7 +8,7 @@ private:
 
 public:
 	InGameScene();
-	virtual ~InGameScene;
+	virtual ~InGameScene();
 	
 	//‰Šú‰»ˆ—
 	virtual void Initialize() override;

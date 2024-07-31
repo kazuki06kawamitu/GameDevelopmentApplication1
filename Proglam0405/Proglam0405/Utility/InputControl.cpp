@@ -26,7 +26,7 @@ InputControl* InputControl::GetInstance()
 	return instance;
 }
 
-void InputContorl::DeleteInstance()
+void InputControl::DeleteInstance()
 {
 	if (instance != nullptr)
 	{
@@ -67,5 +67,5 @@ bool InputControl::GetKeyUp(int key_code)const
 //キー範囲チェック
 bool InputControl::CheckKeyCodeRange(int key_code) const
 {
-	return (0 <= key_code && Key_code < D_KEYCODE_MAX);
+	return (0 <= key_code && key_code < D_KEYCODE_MAX);
 }

@@ -22,7 +22,7 @@ void InGameScene::Initialize()
 void InGameScene::Finalize()
 {
 	player->Finalize();
-	delelte player;
+	delete player;
 }
 
 eSceneType InGameScene::Update(float delta_second)

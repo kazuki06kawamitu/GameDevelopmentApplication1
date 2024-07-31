@@ -26,6 +26,15 @@ JumpingState::~JumpingState()
 ///<summary>
 ///初期化処理
 /// </summry>
+void JumpingState::Initialize()
+{
+	this->player->velocity.y -= 15.0f;  //ジャンプ力
+	old_location = 0.0f;
+}
+
+///<summary>
+///終了処理
+/// </summry>
 void JumpingState::Finalize()
 {
 
@@ -53,7 +62,7 @@ void JumpingState::Update()
 		//}
 	}
 	//前回座標の更新
-	old_location = player->Getlocation();
+	old_location = player->GetLocation();
 }
 
 ///<summary>
@@ -63,11 +72,11 @@ void JumpingState::Draw() const
 {
 	//座標情報を整数値に変換
 	int x = 0, y = 0;
-	player->GetLocation().ToTnt(&x, &y);
+	player->GetLocation().ToInt(&x, &y);
 
 	//描画
 	DrawBox(x, y, x + (int)(player->box_size.x), y + (int)(player->box_size.y),
-		GetColor(0, 0, 255), FALSE);
+	GetColor(0, 0, 255), FALSE);
 }
 
 ///<summary>

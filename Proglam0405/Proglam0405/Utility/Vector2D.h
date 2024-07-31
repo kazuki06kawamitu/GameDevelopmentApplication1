@@ -24,8 +24,8 @@ public:
 	//減算代入 演算子オーバーロード
 	Vector2D& operator-=(const Vector2D& location);
 	//乗算 演算子オーバーロード
-	const Vector2D operator * (const float& scalar) const;
-	const Vector2D operator * (const Vector2D& location) const;
+	const Vector2D operator* (const float& scalar) const;
+	const Vector2D operator* (const Vector2D& location) const;
 	//乗算代入 演算子オーバーロード
 	Vector2D& operator*=(const float& scalar);
 	Vector2D& operator*=(const Vector2D& location);
