@@ -48,18 +48,9 @@ void JumpingState::Update()
 	//’n–Ê‚ÉG‚ê‚½‚ç
 	if (old_location.y == player->GetLocation().y)
 	{
-		//¶‰E“ü—Í‚ª‚ ‚é‚È‚ç
-		//InputControl* input = InputControl::GetInstance();
-		//if (input->GetKey(KEY_INPUT_A) || input->GetKey(KEY_INPUT_D))
-		//{
-		//	//ˆÚ“®ó‘Ô‚É‘JˆÚ
-		//	player->SetNextState(ePlayerState::RUN);
-		//}
-		//else
-		//{
-		//	//’âŽ~ó‘Ô‚É‘JˆÚ
-		//	player->SetNextState(ePlayerState::IDLE);
-		//}
+		
+			//’âŽ~ó‘Ô‚É‘JˆÚ
+			player->SetNextState(ePlayerState::IDLE);
 	}
 	//‘O‰ñÀ•W‚ÌXV
 	old_location = player->GetLocation();

@@ -8,7 +8,9 @@
 ///コンストラクタ
 ///</summary>
 ///<param name="p">プレイヤー情報</param>
-StoppedState::StoppedState(class Player* p)
+/// 
+
+StoppedState::StoppedState(Player* p)
 	: PlayerStateBase(p)
 	, input(nullptr)
 {

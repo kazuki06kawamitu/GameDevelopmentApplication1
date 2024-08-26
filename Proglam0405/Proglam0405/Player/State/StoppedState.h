@@ -15,7 +15,7 @@ public:
 ///コンストラクタ
 ///</summary>
 /// <param name="p">プレイヤー情報</param>
-	StoppedState(class Playre* p);
+	StoppedState(class Player* p);
 
 	//デストラクタ
 	virtual ~StoppedState();

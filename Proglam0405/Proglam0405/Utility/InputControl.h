@@ -17,16 +17,16 @@ private:
 private:
 	//コンストラクタをprivateにすることで、
 	//自クラスのメンバ関数でしかインスタンスを生成できないようにする
-	InputControl() = default;
+	InputControl();
 
 	//コピーガード
 	//クラス外でインスタンスを生成して渡すことができないようにする
-	InputControl(InputControl& v) = delete;
-	InputControl& operator=(const InputControl& v) = delete;
+	InputControl(InputControl& v) = default;
+	InputControl& operator=(const InputControl& v) = default;
 	//~コピーガード
 
 public:
-	~InputControl() = default;
+	~InputControl();
 
 public:
 	//インスタンス取得する処理

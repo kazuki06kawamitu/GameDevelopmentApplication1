@@ -19,7 +19,7 @@ InputControl::~InputControl()
 InputControl* InputControl::GetInstance()
 {
 	//インスタンスが生成されてない場合、生成する
-	if (instance = nullptr)
+	if (instance == nullptr)
 	{
 		instance = new InputControl();
 	}

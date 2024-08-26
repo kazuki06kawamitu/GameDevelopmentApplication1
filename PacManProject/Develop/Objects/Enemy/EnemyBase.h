@@ -7,10 +7,11 @@
 
 enum eEnemyState  //状態モード
 {
-	RESPWAN,	// 復活状態
+
 	SEARCH,		// 探索状態
 	CHASE,		//追いかけ状態
 	DIE,		// 死亡状態
+	RESPWAN,	// 復活状態
 };
 
 
@@ -30,18 +31,23 @@ protected:
 private:
 	std::vector<int> move_animation;		// 移動のアニメーション画像
 	std::vector<int> dying_animation;		// 死亡のアニメーション画像
-	Vector2D old_location;					// 前回のlocation
+	//Vector2D old_location;					// 前回のlocation
 	Vector2D velocity;						// 移動量
 	eEnemyState enemy_state;				// 敵の状態
 	eDirectionState now_direction_state;	// 現在進行方向状態
 	eDirectionState next_direction_state;	// 次回進行方向状態
+	ePanelID old_panel;						// 前回パネル情報
 	float animation_time;					// アニメーション時間
 	int animation_count;					// アニメーション添字
+	int food_count;							// 餌を食べられた数
 
 public:
 	EnemyBase();
 	virtual ~EnemyBase();
 
+	/// <summary>
+	/// 初期化処理
+	/// </summary>
 	virtual void Initialize() override;
 	virtual void Update(float delta_second) override;
 	virtual void Draw(const Vector2D& screen_offset) const override;
