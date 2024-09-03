@@ -57,6 +57,10 @@ void StoppedState::Update()
 	{
 		player->SetNextState(ePlayerState::JUMP);
 	}
+	if (input->GetKey(KEY_INPUT_A) || input->GetKey(KEY_INPUT_D))
+	{
+		player->SetNextState(ePlayerState::RUN);
+	}
 }
 
 ///<summary>

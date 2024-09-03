@@ -2,5 +2,5 @@
 class SceneFactory
 {
 public:
-	static class SceneBace* CreateScene(enum eSceneType);
+	static class SceneBase* CreateScene(enum eSceneType);
  };

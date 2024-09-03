@@ -135,6 +135,8 @@
     <ClCompile Include="Objects\GameObject.cpp" />
     <ClCompile Include="Objects\Player\Player.cpp" />
     <ClCompile Include="Utility\InputControl.cpp" />
+    <ClCompile Include="Utility\InputControl_Mouse.cpp" />
+    <ClCompile Include="Utility\InputControl_Pad.cpp" />
     <ClCompile Include="Utility\ResourceManager.cpp" />
     <ClCompile Include="Utility\Vector2D.cpp" />
   </ItemGroup>
@@ -142,6 +144,8 @@
     <ClInclude Include="Objects\GameObject.h" />
     <ClInclude Include="Objects\Player\Player.h" />
     <ClInclude Include="Utility\InputControl.h" />
+    <ClInclude Include="Utility\InputControl_Mouse.h" />
+    <ClInclude Include="Utility\InputControl_Pad.h" />
     <ClInclude Include="Utility\ResourceManager.h" />
     <ClInclude Include="Utility\UserTemplate.h" />
     <ClInclude Include="Utility\Vector2D.h" />

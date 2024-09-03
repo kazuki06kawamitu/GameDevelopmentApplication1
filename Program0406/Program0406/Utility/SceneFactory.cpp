@@ -2,7 +2,7 @@
 #include "../Scene/SceneBase.h"
 #include "../Scene/InGameScene.h"
 
-SceneBace* SceneFactory::CreateScene(eSceneType scene)
+SceneBase* SceneFactory::CreateScene(eSceneType scene)
 {
 	switch (scene)
 	{

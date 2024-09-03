@@ -71,7 +71,7 @@ private:
 	InputEventManager() = default;
 	InputEventManager(const InputEventManager&) = delete;
 	InputEventManager& operator=(const InputEventManager&) = delete;
-	~InputEventManager() = delete;
+	~InputEventManager() = default;
 
 
 public:

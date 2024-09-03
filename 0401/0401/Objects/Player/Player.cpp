@@ -2,6 +2,8 @@
 #include "../../Utility/InputControl.h"
 #include "../../Utility/UserTemplate.h"
 #include "../../Utility/ResourceManager.h"
+#include "../../Utility/InputControl_Pad.h"
+#include "../../Utility/InputControl_Mouse.h"
 #include "DxLib.h"
 
 //コンストラクタ
@@ -68,6 +70,17 @@ void Player::Movement()
 	InputControl* input = InputControl::GetInstance();
 	//入力状態によって、向きを変更する
 	float direction = 0.0f;
+	if (input->GetKey(KEY_INPUT_LEFT))
+	{
+		direction = -1.0f;
+		flip_flag = TRUE;
+	}
+	else if (input->GetKey(KEY_INPUT_RIGHT))
+	{
+		direction = 1.0f;
+		flip_flag = FALSE;
+	}
+
 	if (input->GetKey(KEY_INPUT_LEFT))
 	{
 		direction = -1.0f;

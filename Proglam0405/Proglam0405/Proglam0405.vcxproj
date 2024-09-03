@@ -23,6 +23,7 @@
     <ClCompile Include="Player\Player.cpp" />
     <ClCompile Include="Player\State\Factory\PlayerdStateFactory.cpp" />
     <ClCompile Include="Player\State\JumpingState.cpp" />
+    <ClCompile Include="Player\State\RunState.cpp" />
     <ClCompile Include="Player\State\StoppedState.cpp" />
     <ClCompile Include="Scene\InGameScene.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
@@ -36,6 +37,7 @@
     <ClInclude Include="Player\State\Factory\PlayerdStateFactory.h" />
     <ClInclude Include="Player\State\JumpingState.h" />
     <ClInclude Include="Player\State\PlayerStateBase.h" />
+    <ClInclude Include="Player\State\RunState.h" />
     <ClInclude Include="Player\State\StoppedState.h" />
     <ClInclude Include="Scene\InGameScene.h" />
     <ClInclude Include="Scene\SceneBase.h" />

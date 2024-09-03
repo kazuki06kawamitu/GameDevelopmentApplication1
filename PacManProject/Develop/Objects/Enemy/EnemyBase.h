@@ -11,7 +11,7 @@ enum eEnemyState  //状態モード
 	SEARCH,		// 探索状態
 	CHASE,		//追いかけ状態
 	DIE,		// 死亡状態
-	RESPWAN,	// 復活状態
+	IDLE,	// 待機
 };
 
 
@@ -31,7 +31,7 @@ protected:
 private:
 	std::vector<int> move_animation;		// 移動のアニメーション画像
 	std::vector<int> dying_animation;		// 死亡のアニメーション画像
-	//Vector2D old_location;					// 前回のlocation
+	Vector2D old_location;					// 前回のlocation
 	Vector2D velocity;						// 移動量
 	eEnemyState enemy_state;				// 敵の状態
 	eDirectionState now_direction_state;	// 現在進行方向状態
@@ -40,6 +40,11 @@ private:
 	float animation_time;					// アニメーション時間
 	int animation_count;					// アニメーション添字
 	int food_count;							// 餌を食べられた数
+	bool is_destroy;						// 死んだ状態になったか？
+	bool is_power_down;						//いじけ状態になっているか？
+
+	// 移動アニメーションの順番
+	const int animation_num[4] = { 0, 1, 2, 1, };
 
 public:
 	EnemyBase();
@@ -69,7 +74,7 @@ public:
 	/// <summary>
 	/// パワーダウンさせる
 	/// </summary>
-	void SetPowerDown();
+	void GetPowerDown();
 
 private:
 	/// <summary>

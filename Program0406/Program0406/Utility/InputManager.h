@@ -23,7 +23,7 @@ private:
 	InputManager() = default;
 	InputManager(const InputManager&) = delete;
 	InputManager& operator=(const InputManager&) = delete;
-	~InputManager() = delete;
+	~InputManager() = default;
 
 public:
 	//インスタンス取得

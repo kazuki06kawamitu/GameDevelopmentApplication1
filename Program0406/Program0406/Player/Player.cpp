@@ -28,7 +28,7 @@ void Player::Initialize()
 	InputEventManager* input_event = InputEventManager::GetInstance();
 	input_event->ActionKeyBind(KEY_INPUT_LEFT, -1.0f, this, &Player::Movement);
 	input_event->ActionKeyBind(KEY_INPUT_RIGHT, 1.0f, this, &Player::Movement);
-	input_event->ActionKeyBind(KEY_INPUT_UP, -5.0f, this, &Player::MovementJanp);
+	input_event->ActionKeyBind(KEY_INPUT_SPACE, -10.0f, this, &Player::MovementJanp);
 }
 
 void Player::Update(float delta_second)
@@ -51,15 +51,17 @@ void Player::Update(float delta_second)
 		location.x = 0.0f;
 		velocity.x = 0.0f;
 	}
-	if (location.y >= 480.0f)
+	if (location.y >= 400.0f)
 	{
-		location.y = 480.0f;
+		location.y = 400.0f;
 		velocity.y = 0.0f;
+		g_velocity = 0.0f;
 	}
 	if (location.y < 0.0f)
 	{
 		location.y = 0.0f;
 		velocity = 0.0f;
+		g_velocity = 0.0f;
 	}
 }
 
@@ -84,4 +86,5 @@ void Player::Movement(float param)
 void Player::MovementJanp(float param)
 {
 	velocity.y += param;
+	g_velocity = 0.0f;
 }

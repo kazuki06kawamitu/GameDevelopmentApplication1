@@ -132,11 +132,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AppMain.cpp" />
+    <ClCompile Include="Scene\HelpScene.cpp" />
+    <ClCompile Include="Scene\InGameScene.cpp" />
+    <ClCompile Include="Scene\ResultScene.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
     <ClCompile Include="Scene\TitleScene.cpp" />
     <ClCompile Include="Utility\InputControl.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Scene\HelpScene.h" />
+    <ClInclude Include="Scene\InGameScene.h" />
+    <ClInclude Include="Scene\ResultScene.h" />
     <ClInclude Include="Scene\SceneBase.h" />
     <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="Scene\TitleScene.h" />

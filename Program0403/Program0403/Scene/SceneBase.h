@@ -6,6 +6,7 @@ enum eSceneType
 	eInGame,
 	eResult,
 	eEnd,
+	eHelp,
 };
 
 class SceneBase

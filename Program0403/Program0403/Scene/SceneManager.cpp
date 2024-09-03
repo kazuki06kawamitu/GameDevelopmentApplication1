@@ -1,7 +1,9 @@
 #include "SceneManager.h"
 #include "../Utility/InputControl.h"
 #include "DxLib.h"
-
+#include "HelpScene.h"
+#include "InGameScene.h"
+#include "ResultScene.h"
 #include "TitleScene.h"
 
 SceneManager::SceneManager() : current_scene(nullptr)
@@ -49,6 +51,8 @@ void SceneManager::Run()
 	//メインループ(ウィンドウが閉じられるorESCキーが入力された でループを終了する)
 	while (ProcessMessage() != -1 && input->GetKeyUp(KEY_INPUT_ESCAPE) != true)
 	{
+		//入力機能の更新処理
+		input->Update();
 		//シーンの更新処理
 		eSceneType next_scene_type = current_scene->Update();
 
@@ -56,7 +60,7 @@ void SceneManager::Run()
 		Draw();
 
 		//シーンの切り替え
-		if (next_scene_type = current_scene->GetNowSceneType())
+		if (next_scene_type != current_scene->GetNowSceneType())
 		{
 			ChangeScene(next_scene_type);
 		}
@@ -136,6 +140,12 @@ SceneBase* SceneManager::CreateScene(eSceneType type)
 	{
 	case eSceneType::eTitle:
 		return dynamic_cast<SceneBase*>(new TitleScene());
+	case eSceneType::eResult:
+		return dynamic_cast<SceneBase*>(new ResultScene());
+	case eSceneType::eHelp:
+		return dynamic_cast<SceneBase*>(new HelpScene());
+	case eSceneType::eInGame:
+		return dynamic_cast<SceneBase*>(new InGameScene());
 	defalt:
 		return nullptr;
 	}
