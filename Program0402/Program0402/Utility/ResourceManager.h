@@ -23,6 +23,8 @@ private:
 
 	//画像コンテナ
 	std::map<std::string, std::vector<int>> images_container;
+	//音コンテナ
+	std::map<std::string, int> sound_container;
 
 private:
 	//自クラスのメンバでしか生成できないようにする
@@ -66,11 +68,15 @@ public:
 		int num_x = 1, int num_y = 1, int size_x = 0, int size_y = 0);
 	const std::vector<int>& GetImages(MaterialParam element);
 
+	//音源
+	int GetSound(const std::string& file_name);
+
 	/**
 	*すべての画像を削除する
 	*@param material_handle 削除したい画像ハンドルのstd::vector配列
 	*/
 	void UnloadResourcesAll();
+	void UnloadResourcesSoundAll();
 
 private:
 	/**
@@ -78,6 +84,7 @@ private:
 	*@param file_name ファイルパス
 	*/
 	void CreateImagesResource(std::string file_name);
+	void CreateSoundsResource(std::string file_name);
 	/*
 	*画像ハンドルを読込みリソースを作成する
 	*@param file_name ファイルパス

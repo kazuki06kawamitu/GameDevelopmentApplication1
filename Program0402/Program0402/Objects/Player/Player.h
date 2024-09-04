@@ -10,6 +10,9 @@ private:
 	std::vector<int> animation_data;  //アニメーション
 	int animation_count;  //アニメーション時間
 
+	std::vector<int>sound_date;
+	int sound_count;
+
 public:
 	Player();//コンストラクタ
 	virtual ~Player();//デストラクタ

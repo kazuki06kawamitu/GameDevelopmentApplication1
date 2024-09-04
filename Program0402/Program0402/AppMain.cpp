@@ -82,7 +82,7 @@ int WINAPI WinMain(
 	//入力機能のインスタンスを削除する
 	InputControl::DeleteInstance();
 	//読み込んだ画像の解放
-	rm->DeleteImages();
+	rm->UnloadResourcesAll();
 	//リソース管理のインスタンスを削除する
 	ResourceManager::DeleteInstance();
 

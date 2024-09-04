@@ -72,6 +72,16 @@ const std::vector<int>& ResourceManager::GetImages(MaterialParam element)
 	return GetImages(element.file_path, element.num_x, element.num_y, element.size_x, element.size_y);
 }
 
+//音源読み込み
+int ResourceManager::GetSound(const std::string& file_name)
+{
+	if (sound_container.count(file_name) == NULL)
+	{
+		CreateSoundsResource(file_name);
+	}
+	return sound_container[file_name];
+}
+
 /**
 	*すべての画像を削除する
 	*@param file_name ファイルパス
@@ -95,6 +105,23 @@ void ResourceManager::UnloadResourcesAll()
 	images_container.clear();
 }
 
+void ResourceManager::UnloadResourcesSoundAll()
+{
+	if (sound_container.size() == NULL)
+	{
+		return;
+	}
+
+	//すべての音源の削除
+	for (std::pair<std::string, int>value : sound_container)
+	{
+		DeleteSharingGraph(value.second);
+	}
+
+	//コンテナを解放
+	sound_container.clear();
+}
+
 /*
 	*画像ハンドルを読み込みリソースを作成する
 	*@param file_name ファイルパス
@@ -112,6 +139,21 @@ void ResourceManager::CreateImagesResource(std::string file_name)
 
 	//コンテナに読み込んだ画像を追加する
 	images_container[file_name].push_back(handle);
+}
+
+void ResourceManager::CreateSoundsResource(std::string file_name)
+{
+	//指定されたファイルを読み込む
+	int handle = LoadSoundMem(file_name.c_str());
+
+	//エラーチェック
+	if (handle == -1)
+	{
+		throw(file_name + "がありません\n");
+	}
+
+	//コンテナに読み込んだ音源を追加する
+	sound_container[file_name] = handle;
 }
 
 /**

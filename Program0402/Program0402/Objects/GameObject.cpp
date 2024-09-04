@@ -7,7 +7,8 @@ GameObject::GameObject() :
 	location(0.0f),
 	box_size(0.0f),
 	image(NULL),
-	flip_flag(FALSE)
+	flip_flag(FALSE),
+	sound(NULL)
 {
 }
 
@@ -22,6 +23,7 @@ void GameObject::Initialize()
 	image = NULL;
 	box_size = Vector2D(23.0f);
 	location = box_size;
+	sound = NULL;
 }
 
 //çXêVèàóù
@@ -39,6 +41,8 @@ void GameObject::Draw() const
 	Vector2D lower_right = location + (box_size / 2.0f);
 	DrawBoxAA(upper_left.x, upper_left.y, lower_right.x, lower_right.y,
 		GetColor(255, 0, 0), FALSE);
+	ChangeVolumeSoundMem(250 * 50 / 100, sound);
+	PlaySoundMem(sound, DX_PLAYTYPE_BACK, FALSE);
 }
 
 //èIóπéûèàóù

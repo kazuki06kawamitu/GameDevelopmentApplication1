@@ -8,7 +8,9 @@
 Player::Player() :
 	velocity(0.0f),
 	animation_data(),
-	animation_count(0)
+	animation_count(0),
+	sound_date(),
+	sound_count(0)
 {
 
 }
@@ -33,12 +35,16 @@ void Player::Initialize()
 	animation_data.push_back(tmp[0]);
 	tmp = rm->GetImages("Resource/Images/Tri-pilot/2.png");
 	animation_data.push_back(tmp[0]);
+	
+	//音源の読込み
+	sound = rm->GetSound("Resource/Sounds/pokan.wav");
 
 	//初期画像の設定
 	image = animation_data[0];
 
 	//アニメーションに関わる設定
 	animation_count = 0;
+	sound_count = 0;
 }
 
 //更新処理

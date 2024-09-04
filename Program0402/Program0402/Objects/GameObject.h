@@ -10,6 +10,7 @@ protected:
 	Vector2D box_size;  //短形の大きさ
 	int image;  //描画する画像データ
 	int flip_flag;  //描画反転フラグ
+	int sound;  //音源データ
 
 public:
 	GameObject();
