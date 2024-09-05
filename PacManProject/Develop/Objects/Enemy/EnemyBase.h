@@ -8,16 +8,18 @@
 enum eEnemyState  //状態モード
 {
 
-	SEARCH,		// 探索状態
-	CHASE,		//追いかけ状態
-	DIE,		// 死亡状態
-	IDLE,	// 待機
+	E_MOVE,
+	E_IDLE,
+	E_DIE,
 };
 
 
 class EnemyBase : public GameObject
 {
-protected:
+public:
+	EnemyBase();
+	virtual ~EnemyBase();
+private:
 	// 進行方向状態
 	enum eDirectionState : unsigned char
 	{
@@ -25,7 +27,6 @@ protected:
 		RIGHT,
 		DOWN,
 		LEFT,
-		NONE,
 	};
 
 private:
@@ -47,8 +48,7 @@ private:
 	const int animation_num[4] = { 0, 1, 2, 1, };
 
 public:
-	EnemyBase();
-	virtual ~EnemyBase();
+	
 
 	/// <summary>
 	/// 初期化処理
@@ -71,10 +71,21 @@ public:
 	/// <returns>敵の状態</returns>
 	eEnemyState GetEnemyState() const;
 
+
 	/// <summary>
 	/// パワーダウンさせる
 	/// </summary>
-	void GetPowerDown();
+	bool GetPowerDown();
+
+	/// <summary>
+	/// パワーダウンさせる
+	/// </summary>
+	void SetPowerDown();
+
+	/// <summary>
+	/// パワーダウンさせる
+	/// </summary>
+	bool GetDestroyDown() const;
 
 private:
 	/// <summary>
