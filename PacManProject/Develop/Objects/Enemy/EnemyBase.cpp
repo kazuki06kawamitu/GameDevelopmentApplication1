@@ -1,24 +1,24 @@
 #include "EnemyBase.h"
-#include "DxLib.h"
+
 #include "../../Utility/InputManager.h"
 #include "../../Utility/ResourceManager.h"
-#include "../Food/Food.h"
+#include "DxLib.h"
 
-#define D_ENEMY_SPEED (80.0f)
+#define D_ENEMY_SPEED (50.0f)
 #define D_ENEMY (1)
 
 EnemyBase::EnemyBase() :
-	move_animation(),
-	dying_animation(),
+	body_animation(),
+	eye_animation(),
 	velocity(),
 	enemy_state(eEnemyState::E_MOVE),
-	now_direction_state(eDirectionState::RIGHT),
+	now_direction_state(EnemyeDirectionState::RIGHT),
 	animation_time(),
 	animation_count(),
-	food_count(),
-	old_panel(ePanelID::NONE),
 	is_power_down(false),
-	is_destroy(false)
+	is_destroy(false),
+	body_image(),
+	eye_image()
 {
 
 }
@@ -33,8 +33,8 @@ void EnemyBase::Initialize()
 {
 	//アニメーション画像の読み込み
 	ResourceManager* rm = ResourceManager::GetInstance();
-	move_animation = rm->GetImages("Resource/Images/monster.png", 12, 12, 1, 32, 32);
-	dying_animation = rm->GetImages("Resource/Images/eyes.png", 11, 11, 1, 32, 32);
+	body_animation = rm->GetImages("Resource/Images/monster.png", 20, 20, 1, 32, 32);
+	eye_animation = rm->GetImages("Resource/Images/eyes.png", 4, 4, 1, 32, 32);
 
 	//当たり判定の設定
 	collision.is_blocking = true;
@@ -49,6 +49,9 @@ void EnemyBase::Initialize()
 
 	// 可動性の設定
 	mobility = eMobilityType::Movable;
+
+	//
+	velocity = Vector2D(1.0f, 0.0f);
 }
 
 void EnemyBase::Update(float delta_second)
@@ -58,7 +61,8 @@ void EnemyBase::Update(float delta_second)
 	{
 	case eEnemyState::E_IDLE:
 		// 画像の設定
-		image = move_animation[9];
+		body_image = body_animation[0];
+		eye_image = eye_animation[1];
 		break;
 	case eEnemyState::E_MOVE:
 		// 移動処理
@@ -76,19 +80,20 @@ void EnemyBase::Draw(const Vector2D& screen_offset) const
 	// 親クラスの描画処理を呼び出す
 	__super::Draw(screen_offset);
 	Vector2D graph_location = this->location + screen_offset;
+	
+	DrawRotaGraphF(graph_location.x, graph_location.y, 1.0, 0.0, body_image, TRUE);
+	DrawRotaGraphF(graph_location.x, graph_location.y, 1.0, 0.0, eye_image, TRUE);
+	
 }
 
 void EnemyBase::Finalize()
 {
 	// 動的配列の解放
-	move_animation.clear();
-	dying_animation.clear();
+	body_animation.clear();
+	eye_animation.clear();
 }
 
-/// <summary>
-/// 当たり判定通知処理
-/// </summary>
-/// <param name="hit_object">当たったゲームオブジェクトのポインタ</param>
+
 void EnemyBase::OnHitCollision(GameObjectBase* hit_object)
 {
 	// 当たった、オブジェクトが壁だったら
@@ -111,6 +116,9 @@ void EnemyBase::OnHitCollision(GameObjectBase* hit_object)
 
 		// diffの分だけ戻る
 		location += dv.Normalize() * diff;
+
+		//
+		velocity *= -1;
 	}
 
 	// 当たったオブジェクトがプレイヤーだったら
@@ -120,53 +128,38 @@ void EnemyBase::OnHitCollision(GameObjectBase* hit_object)
 	}
 }
 
-/// <summary>
-	/// 敵の状態を取得する
-	/// </summary>
-	/// <returns>敵の状態</returns>
+
 eEnemyState EnemyBase::GetEnemyState() const
 {
 	return enemy_state;
 }
 
 
-/// <summary>
-/// パワーダウンさせる
-/// </summary>
+
 bool EnemyBase::GetPowerDown()
 {
 	return is_power_down;
 }
 
-/// <summary>
-	/// パワーダウンさせる
-	/// </summary>
+
 void EnemyBase::SetPowerDown()
 {
 	//is_power_down = false;
 }
 
-/// <summary>
-	/// パワーダウンさせる
-	/// </summary>
+
 bool EnemyBase::GetDestroyDown() const
 {
 	return is_destroy;
 }
 
-/// <summary>
-	/// 移動処理
-	/// </summary>
-	/// <param name="delta_second">1フレームあたりの時間</param>
+
 void EnemyBase::Movement(float delta_second)
 {
 	location += velocity * D_ENEMY_SPEED * delta_second;
 }
 
-/// <summary>
-	/// アニメーション制御
-	/// </summary>
-	/// <param name="delta_second">1フレームあたりの時間</param>
+
 void EnemyBase::AnimationControl(float delta_second)
 {
 	// 移動中のアニメーション
@@ -175,16 +168,31 @@ void EnemyBase::AnimationControl(float delta_second)
 	{
 		animation_time = 0.0f;
 		animation_count++;
-		if (animation_count >= 4)
+		if (animation_count >= 2)
 		{
 			animation_count = 0;
 		}
 		// 画像の設定
-		int dir_num = (int)now_direction_state;
-		if (0 <= dir_num && dir_num < 4)
-		{
-			image = move_animation[(dir_num * 3) + animation_num[animation_count]];
-		}
+		body_image = body_animation[ animation_num[animation_count]];
+		
 
+	}
+
+	if (velocity.x > 0)
+	{
+		eye_image = eye_animation[1];
+	}
+	else if (velocity.x < 0)
+	{
+			eye_image = eye_animation[3];
+	}
+
+	if (velocity.y > 0)
+	{
+		eye_image = eye_animation[4];
+	}
+	else if (velocity.y < 0)
+	{
+		eye_image = eye_animation[0];
 	}
 }
